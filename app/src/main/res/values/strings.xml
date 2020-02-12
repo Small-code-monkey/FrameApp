@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">FrameApp</string>
+    <string name="app_name">框架</string>
+    <string name="title">标题</string>
 </resources>

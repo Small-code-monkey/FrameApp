@@ -1,11 +1,13 @@
 package com.example.frameapp.bean;
 
-import android.content.Context;
-import android.util.AttributeSet;
+import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 /**
  * 基类Fragment
@@ -13,11 +15,23 @@ import androidx.annotation.Nullable;
  *
  * @author
  */
-public class BaseFragment extends BasicActivity {
+public abstract class BaseFragment<A extends BasicActivity> extends Fragment {
+
+    /**
+     * Activity对象
+     */
+    private A Activity;
 
     @Nullable
     @Override
-    public View onCreateView(@Nullable View parent, @NonNull String name, @NonNull Context context, @NonNull AttributeSet attrs) {
-        return super.onCreateView(parent, name, context, attrs);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return super.onCreateView(inflater, container, savedInstanceState);
+    }
+
+    /**
+     * 获取绑定的 Activity
+     */
+    public A getAttachActivity() {
+        return Activity;
     }
 }

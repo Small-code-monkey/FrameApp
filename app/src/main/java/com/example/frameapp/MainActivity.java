@@ -1,20 +1,75 @@
 package com.example.frameapp;
 
 import android.os.Bundle;
+import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.example.frameapp.adapter.rv.RvMainAdapter;
+import com.example.frameapp.bean.BaseActivity;
+import com.hjq.bar.TitleBar;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
- * 实验Activity
+ * 首页Activity
  * 2020-02-12
  *
  * @author
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity implements BaseQuickAdapter.OnItemChildClickListener {
 
+    @BindView(R.id.titleBar)
+    TitleBar titleBar;
+    @BindView(R.id.rv_main)
+    RecyclerView rvMain;
+
+    /**
+     * 获取布局
+     *
+     * @return
+     */
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    protected int setLayout() {
+        return R.layout.activity_main;
+    }
+
+    /**
+     * 初始化数据
+     */
+    @Override
+    protected void initData() {
+        RvMainAdapter adapter = new RvMainAdapter(R.layout.item_rv_main,
+                new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.rv_main))));
+        rvMain.setAdapter(adapter);
+        adapter.setOnItemChildClickListener(this);
+    }
+
+    /**
+     * callback method to be invoked when an item in this view has been
+     * click and held
+     *
+     * @param adapter
+     * @param view     The view whihin the ItemView that was clicked
+     * @param position The position of the view int the adapter
+     */
+    @Override
+    public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+        switch (position) {
+            case 0:
+                //引导图
+
+                break;
+            case 1:
+                //轮播图
+                break;
+            default:
+                break;
+        }
     }
 }
