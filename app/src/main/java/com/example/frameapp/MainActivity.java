@@ -1,6 +1,5 @@
 package com.example.frameapp;
 
-import android.os.Bundle;
 import android.view.View;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -8,13 +7,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.frameapp.adapter.rv.RvMainAdapter;
 import com.example.frameapp.bean.BaseActivity;
+import com.example.frameapp.view.activity.GuideMapActivity;
 import com.hjq.bar.TitleBar;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * 首页Activity
@@ -63,7 +62,7 @@ public class MainActivity extends BaseActivity implements BaseQuickAdapter.OnIte
         switch (position) {
             case 0:
                 //引导图
-
+                startActivity(GuideMapActivity.class);
                 break;
             case 1:
                 //轮播图
