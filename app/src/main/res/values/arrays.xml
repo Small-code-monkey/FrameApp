@@ -3,5 +3,6 @@
     <string-array name="rv_main">
         <item>引导图</item>
         <item>轮播图</item>
+        <item>Tab框架</item>
     </string-array>
 </resources>

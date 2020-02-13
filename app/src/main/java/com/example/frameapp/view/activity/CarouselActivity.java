@@ -1,13 +1,10 @@
 package com.example.frameapp.view.activity;
 
-import android.view.ViewGroup;
-
 import com.example.frameapp.R;
 import com.example.frameapp.adapter.BannerCarouseAdapter;
-import com.example.frameapp.bean.BaseActivity;
+import com.example.frameapp.base.BaseActivity;
 import com.hjq.bar.TitleBar;
 import com.youth.banner.Banner;
-import com.youth.banner.adapter.BannerAdapter;
 import com.youth.banner.indicator.CircleIndicator;
 
 import java.util.ArrayList;
@@ -34,7 +31,7 @@ public class CarouselActivity extends BaseActivity {
      * @return
      */
     @Override
-    protected int setLayout() {
+    protected int getLayout() {
         return R.layout.activity_carousel;
     }
 
@@ -50,6 +47,7 @@ public class CarouselActivity extends BaseActivity {
         urls.add("http://img.nicebing.com/OHR.BrightonJetty_ZH-CN1526526038_1920x1080.jpg");
         bannerCarouse.setAdapter(new BannerCarouseAdapter(urls));
         bannerCarouse.setIndicator(new CircleIndicator(this));
+        bannerCarouse.setDelayTime(3000);
         bannerCarouse.start();
     }
 

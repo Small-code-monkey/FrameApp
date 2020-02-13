@@ -1,4 +1,4 @@
-package com.example.frameapp.bean;
+package com.example.frameapp.base;
 
 import android.app.Application;
 

@@ -8,7 +8,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.frameapp.MainActivity;
 import com.example.frameapp.R;
 import com.example.frameapp.adapter.GuidePagerAdapter;
-import com.example.frameapp.bean.BaseActivity;
+import com.example.frameapp.base.BaseActivity;
 import com.rd.PageIndicatorView;
 
 import java.util.ArrayList;
@@ -40,7 +40,7 @@ public class GuideMapActivity extends BaseActivity implements ViewPager.OnPageCh
      * @return
      */
     @Override
-    protected int setLayout() {
+    protected int getLayout() {
         return R.layout.activity_guide_map;
     }
 

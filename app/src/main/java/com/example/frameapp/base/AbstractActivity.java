@@ -1,19 +1,14 @@
-package com.example.frameapp.bean;
+package com.example.frameapp.base;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 
 import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.frameapp.action.TitleBarAction;
-import com.hjq.bar.TitleBar;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -37,7 +32,7 @@ public abstract class AbstractActivity extends AppCompatActivity {
     }
 
     protected void initLayout() {
-        setContentView(setLayout());
+        setContentView(getLayout());
         unbinder = ButterKnife.bind(this);
         initData();
     }
@@ -53,7 +48,7 @@ public abstract class AbstractActivity extends AppCompatActivity {
      *
      * @return
      */
-    protected abstract int setLayout();
+    protected abstract int getLayout();
 
     /**
      * 初始化数据

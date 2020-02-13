@@ -1,4 +1,4 @@
-package com.example.frameapp.bean;
+package com.example.frameapp.base;
 
 import android.os.Bundle;
 import android.view.View;
@@ -8,6 +8,8 @@ import androidx.annotation.StringRes;
 
 import com.example.frameapp.action.TitleBarAction;
 import com.hjq.bar.TitleBar;
+
+import butterknife.ButterKnife;
 
 /**
  * 基类Activity
@@ -23,6 +25,33 @@ public abstract class BaseActivity extends AbstractActivity implements
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    /**
+     * 获取标题栏 id
+     */
+    protected int getTitleId() {
+        return 0;
+    }
+
+    @Override
+    protected void initLayout() {
+        super.initLayout();
+        //TitleBar点击事件
+        if (getTitleBar() != null) {
+            getTitleBar().setOnTitleBarListener(this);
+        }
+        if (getTitleId() > 0) {
+            // 勤快模式
+            View view = findViewById(getTitleId());
+            if (view instanceof TitleBar) {
+                titleBar = (TitleBar) view;
+            }
+        } else if (getTitleId() == 0) {
+            // 懒人模式
+            titleBar = findTitleBar(getContentView());
+        }
+        ButterKnife.bind(this);
     }
 
     /**

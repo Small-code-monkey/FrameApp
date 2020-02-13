@@ -6,9 +6,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.frameapp.adapter.rv.RvMainAdapter;
-import com.example.frameapp.bean.BaseActivity;
+import com.example.frameapp.base.BaseActivity;
 import com.example.frameapp.view.activity.CarouselActivity;
 import com.example.frameapp.view.activity.GuideMapActivity;
+import com.example.frameapp.view.activity.TabActivity;
 import com.hjq.bar.TitleBar;
 
 import java.util.ArrayList;
@@ -35,7 +36,7 @@ public class MainActivity extends BaseActivity implements BaseQuickAdapter.OnIte
      * @return
      */
     @Override
-    protected int setLayout() {
+    protected int getLayout() {
         return R.layout.activity_main;
     }
 
@@ -69,6 +70,10 @@ public class MainActivity extends BaseActivity implements BaseQuickAdapter.OnIte
             case 1:
                 //轮播图
                 startActivity(CarouselActivity.class);
+                break;
+            case 2:
+                //Tab
+                startActivity(TabActivity.class);
                 break;
             default:
                 break;
