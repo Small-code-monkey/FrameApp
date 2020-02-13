@@ -34,6 +34,7 @@ public class RvMainAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
      */
     @Override
     protected void convert(BaseViewHolder helper, String item) {
-        helper.setText(R.id.item_bu_main, item).addOnClickListener(R.id.item_ll_main);
+        helper.setText(R.id.item_bu_main, item).
+                addOnClickListener(R.id.item_bu_main);
     }
 }

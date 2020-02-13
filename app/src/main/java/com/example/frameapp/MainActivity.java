@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.frameapp.adapter.rv.RvMainAdapter;
 import com.example.frameapp.bean.BaseActivity;
+import com.example.frameapp.view.activity.CarouselActivity;
 import com.example.frameapp.view.activity.GuideMapActivity;
 import com.hjq.bar.TitleBar;
 
@@ -63,9 +64,11 @@ public class MainActivity extends BaseActivity implements BaseQuickAdapter.OnIte
             case 0:
                 //引导图
                 startActivity(GuideMapActivity.class);
+                finish();
                 break;
             case 1:
                 //轮播图
+                startActivity(CarouselActivity.class);
                 break;
             default:
                 break;

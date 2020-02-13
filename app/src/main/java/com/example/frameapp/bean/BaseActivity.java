@@ -1,6 +1,7 @@
 package com.example.frameapp.bean;
 
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
@@ -14,7 +15,7 @@ import com.hjq.bar.TitleBar;
  *
  * @author
  */
-public abstract class BaseActivity extends BasicActivity implements
+public abstract class BaseActivity extends AbstractActivity implements
         TitleBarAction {
 
     private TitleBar titleBar;
@@ -55,5 +56,15 @@ public abstract class BaseActivity extends BasicActivity implements
             titleBar = findTitleBar(getContentView());
         }
         return titleBar;
+    }
+
+    /**
+     * 左图标点击事件
+     *
+     * @param v 被点击的左项View
+     */
+    @Override
+    public void onLeftClick(View v) {
+        onBackPressed();
     }
 }

@@ -15,7 +15,7 @@ import androidx.fragment.app.Fragment;
  *
  * @author
  */
-public abstract class BaseFragment<A extends BasicActivity> extends Fragment {
+public abstract class BaseFragment<A extends AbstractActivity> extends Fragment {
 
     /**
      * Activity对象
