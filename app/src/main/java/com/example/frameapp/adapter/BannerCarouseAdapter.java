@@ -20,8 +20,8 @@ import java.util.List;
  */
 public class BannerCarouseAdapter extends BannerAdapter<String, BannerCarouseAdapter.ImageHolder> {
 
-    public BannerCarouseAdapter(List<String> datas) {
-        super(datas);
+    public BannerCarouseAdapter(List<String> data) {
+        super(data);
     }
 
     /**
