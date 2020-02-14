@@ -39,6 +39,22 @@ public abstract class AbstractFragment<A extends AbstractActivity> extends Fragm
      */
     private boolean mInitialize;
 
+    @SuppressWarnings("unchecked")
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        activity = (A) requireActivity();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (!mInitialize) {
+            mInitialize = true;
+            initFragment();
+        }
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -51,13 +67,6 @@ public abstract class AbstractFragment<A extends AbstractActivity> extends Fragm
             parent.removeView(view);
         }
         return view;
-    }
-
-    /**
-     * 是否在Fragment使用沉浸式
-     */
-    public boolean isStatusBarEnabled() {
-        return false;
     }
 
     @Nullable
@@ -108,13 +117,4 @@ public abstract class AbstractFragment<A extends AbstractActivity> extends Fragm
      * 初始化数据
      */
     protected abstract void initData();
-
-    /**
-     * startActivity 方法简化
-     *
-     * @param clazz class类
-     */
-    public void startActivity(Class<? extends activity> clazz) {
-        startActivity(new Intent(activity, clazz));
-    }
 }

@@ -15,7 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".view.fragment.HomeFragment"></activity>
+        <activity android:name=".view.fragment.ImageFragment"></activity>
+        <activity android:name=".view.fragment.HomeFragment" />
         <activity android:name=".view.activity.TabActivity" />
         <activity android:name=".view.activity.CarouselActivity" />
         <activity android:name=".view.activity.GuideMapActivity" />
