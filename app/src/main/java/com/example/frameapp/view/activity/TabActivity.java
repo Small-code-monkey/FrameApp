@@ -75,6 +75,7 @@ public class TabActivity extends BaseActivity implements BottomNavigationView.On
                 adapter.setCurrentItem(ImageFragment.class);
                 return true;
             default:
+                "123"
                 break;
         }
         return false;
