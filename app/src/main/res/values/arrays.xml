@@ -4,5 +4,7 @@
         <item>引导图</item>
         <item>轮播图</item>
         <item>Tab框架</item>
+        <item>MVP框架</item>
+        <item>环信IM</item>
     </string-array>
 </resources>

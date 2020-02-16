@@ -7,7 +7,7 @@ import com.example.frameapp.R;
 import com.example.frameapp.base.BaseFragment;
 
 /**
- * Tab 图片ImageFragment
+ * Tab 图片 ImageFragment
  * 2020-02-14
  *
  * @author

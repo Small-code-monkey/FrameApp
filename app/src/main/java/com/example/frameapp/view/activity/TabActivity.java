@@ -25,10 +25,10 @@ import butterknife.ButterKnife;
  */
 public class TabActivity extends BaseActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
-    @BindView(R.id.bv_pv_main)
-    BaseViewPagerView bvPvMain;
-    @BindView(R.id.bn_view_main)
-    BottomNavigationView bnViewMain;
+    @BindView(R.id.bv_pv_tab)
+    BaseViewPagerView bvPvTab;
+    @BindView(R.id.bn_view_tab)
+    BottomNavigationView bnViewTab;
 
     private BaseFragmentAdapter<BaseFragment> adapter;
 
@@ -51,10 +51,10 @@ public class TabActivity extends BaseActivity implements BottomNavigationView.On
         adapter = new BaseFragmentAdapter<>(this);
         adapter.addFragment(HomeFragment.newInstance());
         adapter.addFragment(ImageFragment.newInstance());
-        bvPvMain.setAdapter(adapter);
+        bvPvTab.setAdapter(adapter);
 
         //NavigationView
-        bnViewMain.setOnNavigationItemSelectedListener(this);
+        bnViewTab.setOnNavigationItemSelectedListener(this);
     }
 
     /**
@@ -75,7 +75,6 @@ public class TabActivity extends BaseActivity implements BottomNavigationView.On
                 adapter.setCurrentItem(ImageFragment.class);
                 return true;
             default:
-                "123"
                 break;
         }
         return false;

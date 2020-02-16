@@ -9,6 +9,8 @@ import com.example.frameapp.adapter.rv.RvMainAdapter;
 import com.example.frameapp.base.BaseActivity;
 import com.example.frameapp.view.activity.CarouselActivity;
 import com.example.frameapp.view.activity.GuideMapActivity;
+import com.example.frameapp.view.activity.HxImActivity;
+import com.example.frameapp.view.activity.MvpActivity;
 import com.example.frameapp.view.activity.TabActivity;
 import com.hjq.bar.TitleBar;
 
@@ -74,6 +76,14 @@ public class MainActivity extends BaseActivity implements BaseQuickAdapter.OnIte
             case 2:
                 //Tab
                 startActivity(TabActivity.class);
+                break;
+            case 3:
+                //Mvp
+                startActivity(MvpActivity.class);
+                break;
+            case 4:
+                //环信Im
+                startActivity(HxImActivity.class);
                 break;
             default:
                 break;

@@ -4,23 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.activity.TabActivity">
+    tools:context=".view.activity.HxImActivity">
 
     <com.example.frameapp.util.views.BaseViewPagerView
-        android:id="@+id/bv_pv_tab"
+        android:id="@+id/bv_pv_hx_im"
         android:layout_width="match_parent"
         android:layout_height="0px"
         android:layout_weight="1"
         tools:ignore="MissingConstraints" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bn_view_tab"
+        android:id="@+id/bn_view_hx_im"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/white"
         app:itemTextColor="@drawable/selector_navigation_color"
         app:labelVisibilityMode="labeled"
-        app:layout_constraintBottom_toBottomOf="@+id/bv_pv_tab"
+        app:layout_constraintBottom_toBottomOf="@+id/bv_pv_hx_im"
         app:menu="@menu/menu_tab"
         tools:ignore="MissingConstraints" />
 

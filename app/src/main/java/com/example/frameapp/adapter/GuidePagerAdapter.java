@@ -10,6 +10,8 @@ import androidx.viewpager.widget.PagerAdapter;
 
 import com.bumptech.glide.Glide;
 import com.example.frameapp.R;
+import com.example.frameapp.base.BaseApplication;
+import com.example.frameapp.util.AppUtil;
 
 import java.util.List;
 
@@ -22,7 +24,6 @@ import java.util.List;
 public class GuidePagerAdapter extends PagerAdapter {
 
     private List<String> urls;
-    private int[] urlInt = {R.mipmap.bg_guide_1, R.mipmap.bg_guide_2, R.mipmap.bg_guide_3};
 
     public GuidePagerAdapter(List<String> urls) {
         this.urls = urls;
@@ -68,10 +69,13 @@ public class GuidePagerAdapter extends PagerAdapter {
         imageView.setPaddingRelative(0, 0, 0,
                 (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
                         50, container.getContext().getResources().getDisplayMetrics()));
-        //使用网络
-        Glide.with(container.getContext()).load(urls.get(position)).into(imageView);
-        //使用本地
-//        imageView.setImageResource(urlInt[position]);
+        if (AppUtil.iConnected(container.getContext())) {
+            //使用网络
+            Glide.with(container.getContext()).load(urls.get(position)).into(imageView);
+        } else {
+            //使用本地
+            imageView.setImageResource(BaseApplication.urlInt[position]);
+        }
         container.addView(imageView);
         return imageView;
     }

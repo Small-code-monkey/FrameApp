@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.frameapp">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -15,7 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".view.fragment.ImageFragment"></activity>
+        <activity android:name=".view.activity.HxImActivity"></activity>
+        <activity android:name=".view.activity.MvpActivity" />
+        <activity android:name=".view.fragment.ImageFragment" />
         <activity android:name=".view.fragment.HomeFragment" />
         <activity android:name=".view.activity.TabActivity" />
         <activity android:name=".view.activity.CarouselActivity" />

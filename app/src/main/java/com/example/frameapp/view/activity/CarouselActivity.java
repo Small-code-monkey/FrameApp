@@ -45,7 +45,7 @@ public class CarouselActivity extends BaseActivity {
         urls.add("http://img.nicebing.com/OHR.Lanternfestival2020_ZH-CN9333703076_1920x1080.jpg");
         urls.add("http://img.nicebing.com/OHR.LionRock_ZH-CN1466577021_1920x1080.jpg");
         urls.add("http://img.nicebing.com/OHR.BrightonJetty_ZH-CN1526526038_1920x1080.jpg");
-        bannerCarouse.setAdapter(new BannerCarouseAdapter(urls));
+        bannerCarouse.setAdapter(new BannerCarouseAdapter(urls, context));
         bannerCarouse.setIndicator(new CircleIndicator(this));
         bannerCarouse.setDelayTime(3000);
         bannerCarouse.start();

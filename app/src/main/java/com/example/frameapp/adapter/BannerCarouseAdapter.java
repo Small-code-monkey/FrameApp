@@ -1,5 +1,6 @@
 package com.example.frameapp.adapter;
 
+import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -8,6 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.frameapp.base.BaseApplication;
+import com.example.frameapp.util.AppUtil;
 import com.youth.banner.adapter.BannerAdapter;
 
 import java.util.List;
@@ -20,8 +23,11 @@ import java.util.List;
  */
 public class BannerCarouseAdapter extends BannerAdapter<String, BannerCarouseAdapter.ImageHolder> {
 
-    public BannerCarouseAdapter(List<String> data) {
-        super(data);
+    private Context context;
+
+    public BannerCarouseAdapter(List<String> datas, Context context) {
+        super(datas);
+        this.context = context;
     }
 
     /**
@@ -51,7 +57,13 @@ public class BannerCarouseAdapter extends BannerAdapter<String, BannerCarouseAda
      */
     @Override
     public void onBindView(ImageHolder holder, String data, int position, int size) {
-        Glide.with(holder.itemView).load(data).into(holder.imageView);
+        if (AppUtil.iConnected(context)) {
+            //使用网络
+            Glide.with(holder.itemView).load(data).into(holder.imageView);
+        } else {
+            //使用本地
+            holder.imageView.setImageResource(BaseApplication.urlInt[position]);
+        }
     }
 
     class ImageHolder extends RecyclerView.ViewHolder {

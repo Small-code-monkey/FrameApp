@@ -1,0 +1,8 @@
+
+环信官网：http://www.easemob.com/
+
+注册账号，创建应用:
+    android文档：http://docs-im.easemob.com/im/android/sdk/import
+    androidSDK+Demo: http://www.easemob.com/download/im
+
+开发时环信版本号是3.6.4：

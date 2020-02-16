@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 
 import com.example.frameapp.action.TitleBarAction;
+import com.example.frameapp.view.dialog.WaitDialog;
 import com.hjq.bar.TitleBar;
 
 import butterknife.ButterKnife;
@@ -21,6 +22,7 @@ public abstract class BaseActivity extends AbstractActivity implements
         TitleBarAction {
 
     private TitleBar titleBar;
+    private WaitDialog waitDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -95,5 +97,45 @@ public abstract class BaseActivity extends AbstractActivity implements
     @Override
     public void onLeftClick(View v) {
         onBackPressed();
+    }
+
+    /**
+     * 显示加载中(默认)
+     */
+    public void showLoading() {
+        showLoading("加载中...");
+    }
+
+    /**
+     * 显示加载中
+     *
+     * @param id id资源
+     */
+    public void showLoading(@StringRes int id) {
+        showLoading(getString(id));
+    }
+
+    /**
+     * 显示加载中
+     *
+     * @param text 填写
+     */
+    public void showLoading(String text) {
+        if (waitDialog == null) {
+            waitDialog = new WaitDialog.Builder(context)
+                    .setMessage(text).create();
+        }
+        if (!waitDialog.isShowing()) {
+            waitDialog.show();
+        }
+    }
+
+    /**
+     * 显示加载完成
+     */
+    public void showComplete() {
+        if (waitDialog != null && waitDialog.isShowing()) {
+            waitDialog.dismiss();
+        }
     }
 }
