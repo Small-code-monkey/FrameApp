@@ -1,11 +1,20 @@
 package com.example.frameapp.view.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.view.MenuItem;
 
-import android.os.Bundle;
+import androidx.annotation.NonNull;
 
 import com.example.frameapp.R;
+import com.example.frameapp.adapter.BaseFragmentAdapter;
 import com.example.frameapp.base.BaseActivity;
+import com.example.frameapp.base.BaseFragment;
+import com.example.frameapp.util.views.BaseViewPagerView;
+import com.example.frameapp.view.fragment.HxAddFriendFragment;
+import com.example.frameapp.view.fragment.HxBuddyFragment;
+import com.example.frameapp.view.fragment.HxGroupFragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import butterknife.BindView;
 
 /**
  * 环信Im
@@ -13,7 +22,14 @@ import com.example.frameapp.base.BaseActivity;
  *
  * @author
  */
-public class HxImActivity extends BaseActivity {
+public class HxImActivity extends BaseActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+
+    @BindView(R.id.bv_pv_hx_im)
+    BaseViewPagerView bvPvHxIm;
+    @BindView(R.id.bn_view_hx_im)
+    BottomNavigationView bnViewHxIm;
+
+    private BaseFragmentAdapter<BaseFragment> adapter;
 
     /**
      * 获取布局
@@ -30,6 +46,38 @@ public class HxImActivity extends BaseActivity {
      */
     @Override
     protected void initData() {
+        adapter = new BaseFragmentAdapter<>(this);
+        adapter.addFragment(HxAddFriendFragment.newInstance());
+        adapter.addFragment(HxBuddyFragment.newInstance());
+        adapter.addFragment(HxGroupFragment.newInstance());
+        bvPvHxIm.setAdapter(adapter);
 
+        bnViewHxIm.setOnNavigationItemSelectedListener(this);
+    }
+
+    /**
+     * Called when an item in the bottom navigation menu is selected.
+     *
+     * @param item The selected item
+     * @return true to display the item as the selected item and false if the item should not be
+     * selected. Consider setting non-selectable items as disabled preemptively to make them
+     * appear non-interactive.
+     */
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_add_friend:
+                adapter.setCurrentItem(HxAddFriendFragment.class);
+                return true;
+            case R.id.menu_buddy:
+                adapter.setCurrentItem(HxBuddyFragment.class);
+                return true;
+            case R.id.menu_group:
+                adapter.setCurrentItem(HxGroupFragment.class);
+                return true;
+            default:
+                break;
+        }
+        return false;
     }
 }

@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.ViewGroup;
 import android.view.Window;
 
@@ -23,6 +25,7 @@ public abstract class AbstractActivity extends AppCompatActivity {
 
     public Context context;
     private Unbinder unbinder;
+    private Handler handler = new Handler(Looper.getMainLooper());
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -66,5 +69,15 @@ public abstract class AbstractActivity extends AppCompatActivity {
      */
     public void startActivity(Class<? extends Activity> clazz) {
         startActivity(new Intent(this, clazz));
+    }
+
+    /**
+     * 线程
+     *
+     * @param r
+     * @return
+     */
+    public boolean postHandler(Runnable r) {
+        return handler.post(r);
     }
 }

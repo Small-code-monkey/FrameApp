@@ -1,6 +1,5 @@
 package com.example.frameapp.view.activity;
 
-import android.os.Bundle;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
@@ -15,7 +14,6 @@ import com.example.frameapp.view.fragment.ImageFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * Tab框架

@@ -21,7 +21,7 @@
         app:itemTextColor="@drawable/selector_navigation_color"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="@+id/bv_pv_hx_im"
-        app:menu="@menu/menu_tab"
+        app:menu="@menu/menu_hx"
         tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

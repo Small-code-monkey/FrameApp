@@ -1,5 +1,7 @@
 package com.example.frameapp;
 
+import android.os.Environment;
+import android.util.Log;
 import android.view.View;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -9,7 +11,7 @@ import com.example.frameapp.adapter.rv.RvMainAdapter;
 import com.example.frameapp.base.BaseActivity;
 import com.example.frameapp.view.activity.CarouselActivity;
 import com.example.frameapp.view.activity.GuideMapActivity;
-import com.example.frameapp.view.activity.HxImActivity;
+import com.example.frameapp.view.activity.HxRegisteredActivity;
 import com.example.frameapp.view.activity.MvpActivity;
 import com.example.frameapp.view.activity.TabActivity;
 import com.hjq.bar.TitleBar;
@@ -83,7 +85,7 @@ public class MainActivity extends BaseActivity implements BaseQuickAdapter.OnIte
                 break;
             case 4:
                 //环信Im
-                startActivity(HxImActivity.class);
+                startActivity(HxRegisteredActivity.class);
                 break;
             default:
                 break;

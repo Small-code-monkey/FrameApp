@@ -1,5 +1,6 @@
 package com.example.frameapp.view.activity;
 
+import android.view.KeyEvent;
 import android.view.View;
 
 import androidx.appcompat.widget.AppCompatImageView;
@@ -113,5 +114,18 @@ public class GuideMapActivity extends BaseActivity implements ViewPager.OnPageCh
             ivGuide.setVisibility(vpGuide.getCurrentItem() == guidePagerAdapter.getCount() - 1 ?
                     View.VISIBLE : View.INVISIBLE);
         }
+    }
+
+    /**
+     * 监听硬件返回
+     *
+     * @param keyCode
+     * @param event
+     * @return
+     */
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        startActivity(MainActivity.class);
+        return super.onKeyUp(keyCode, event);
     }
 }

@@ -20,8 +20,6 @@ import butterknife.BindView;
  */
 public class CarouselActivity extends BaseActivity {
 
-    @BindView(R.id.titleBar2)
-    TitleBar titleBar2;
     @BindView(R.id.banner_carouse)
     Banner bannerCarouse;
 

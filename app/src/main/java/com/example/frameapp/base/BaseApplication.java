@@ -1,11 +1,14 @@
 package com.example.frameapp.base;
 
 import android.app.Application;
+import android.os.Environment;
+import android.util.Log;
 
 import com.example.frameapp.R;
 import com.hjq.toast.ToastUtils;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMOptions;
+import com.tencent.mmkv.MMKV;
 
 /**
  * 基类Application
@@ -22,6 +25,8 @@ public class BaseApplication extends Application {
         super.onCreate();
         //初始化Toast
         ToastUtils.init(this);
+        //初始化TenCentMMKV 配置数据存储地址
+        MMKV.initialize(this);
         //初始化环信
         EMOptions options = new EMOptions();
         EMClient.getInstance().init(getApplicationContext(), options);
