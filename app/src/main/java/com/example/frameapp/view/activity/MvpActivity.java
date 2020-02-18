@@ -25,8 +25,6 @@ import butterknife.BindView;
 public class MvpActivity extends BaseActivity implements
         MvpContract.View<MvpTestDataBean> {
 
-    @BindView(R.id.titleBar4)
-    TitleBar titleBar4;
     @BindView(R.id.rv_mvp)
     RecyclerView rvMvp;
 

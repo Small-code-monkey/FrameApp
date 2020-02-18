@@ -11,18 +11,9 @@ import android.os.Parcelable;
  */
 public class HxBuddyBean implements Parcelable {
 
-    private Integer icon;
     private String name;
     private String time;
     private String news;
-
-    public Integer getIcon() {
-        return icon;
-    }
-
-    public void setIcon(Integer icon) {
-        this.icon = icon;
-    }
 
     public String getName() {
         return name;
@@ -48,15 +39,6 @@ public class HxBuddyBean implements Parcelable {
         this.news = news;
     }
 
-    @Override
-    public String toString() {
-        return "HxBuddyBean{" +
-                "icon=" + icon +
-                ", name='" + name + '\'' +
-                ", time='" + time + '\'' +
-                ", news='" + news + '\'' +
-                '}';
-    }
 
     @Override
     public int describeContents() {
@@ -65,7 +47,6 @@ public class HxBuddyBean implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeValue(this.icon);
         dest.writeString(this.name);
         dest.writeString(this.time);
         dest.writeString(this.news);
@@ -75,7 +56,6 @@ public class HxBuddyBean implements Parcelable {
     }
 
     protected HxBuddyBean(Parcel in) {
-        this.icon = (Integer) in.readValue(Integer.class.getClassLoader());
         this.name = in.readString();
         this.time = in.readString();
         this.news = in.readString();

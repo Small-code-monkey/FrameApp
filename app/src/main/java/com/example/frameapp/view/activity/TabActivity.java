@@ -67,10 +67,10 @@ public class TabActivity extends BaseActivity implements BottomNavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_home:
-                adapter.setCurrentItem(HomeFragment.class);
+                adapter.setCurrentItem(0);
                 return true;
             case R.id.menu_image:
-                adapter.setCurrentItem(ImageFragment.class);
+                adapter.setCurrentItem(1);
                 return true;
             default:
                 break;

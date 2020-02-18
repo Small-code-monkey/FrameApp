@@ -33,7 +33,6 @@ public abstract class BaseFragment<A extends AbstractActivity> extends AbstractF
     @Override
     protected void initFragment() {
         assert getView() != null;
-        ButterKnife.bind(this, getView());
         if (getTitleBar() != null) {
             getTitleBar().setOnTitleBarListener(this);
         }

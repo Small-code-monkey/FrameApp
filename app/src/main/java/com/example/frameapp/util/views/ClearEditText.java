@@ -23,23 +23,23 @@ import java.util.Objects;
  *
  * @author
  */
-public class BaseClearEditText extends AppCompatEditText implements
+public class ClearEditText extends AppCompatEditText implements
         View.OnTouchListener, View.OnFocusChangeListener, TextWatcher {
 
     private Drawable drawable;
     private OnTouchListener monTouchListener;
     private OnFocusChangeListener monFocusChangeListener;
 
-    public BaseClearEditText(Context context) {
+    public ClearEditText(Context context) {
         this(context, null);
     }
 
-    public BaseClearEditText(Context context, AttributeSet attrs) {
+    public ClearEditText(Context context, AttributeSet attrs) {
         this(context, attrs, android.R.attr.editTextStyle);
     }
 
     @SuppressLint("ClickableViewAccessibility")
-    public BaseClearEditText(Context context, AttributeSet attrs, int defStyleAttr) {
+    public ClearEditText(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         drawable = DrawableCompat.wrap(Objects.requireNonNull(ContextCompat.getDrawable(context, R.mipmap.ic_input_delete)));
         drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());

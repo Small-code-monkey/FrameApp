@@ -9,9 +9,8 @@ import androidx.appcompat.widget.AppCompatTextView;
 
 import com.example.frameapp.R;
 import com.example.frameapp.base.BaseActivity;
-import com.example.frameapp.mvp.presenter.MvpPresenter;
 import com.example.frameapp.util.AppUtil;
-import com.example.frameapp.util.views.BaseClearEditText;
+import com.example.frameapp.util.views.ClearEditText;
 import com.hjq.bar.TitleBar;
 import com.hjq.toast.ToastUtils;
 import com.hyphenate.EMCallBack;
@@ -31,9 +30,9 @@ import butterknife.OnClick;
 public class HxRegisteredActivity extends BaseActivity {
 
     @BindView(R.id.et_rd_user)
-    BaseClearEditText etRdUser;
+    ClearEditText etRdUser;
     @BindView(R.id.et_rd_pwd)
-    BaseClearEditText etRdPwd;
+    ClearEditText etRdPwd;
     @BindView(R.id.tv_hx_rd)
     AppCompatTextView tvHxRd;
     @BindView(R.id.bu_hx_rd)
@@ -82,6 +81,7 @@ public class HxRegisteredActivity extends BaseActivity {
                             ToastUtils.show("账号密码不能为空");
                             return;
                         }
+                        showLoading();
                         EMClient.getInstance().createAccount(name, password);
                         ToastUtils.show("注册成功");
                     } catch (HyphenateException e) {
@@ -89,6 +89,7 @@ public class HxRegisteredActivity extends BaseActivity {
                         if (e.getErrorCode() == 203) {
                             ToastUtils.show("用户已存在");
                         }
+                        showComplete();
                     }
                 }).start();
                 break;
@@ -103,6 +104,10 @@ public class HxRegisteredActivity extends BaseActivity {
                 EMClient.getInstance().login(nameLogin, passwordLogin, new EMCallBack() {
                     @Override
                     public void onSuccess() {
+                        //获取群组消息
+                        EMClient.getInstance().groupManager().loadAllGroups();
+                        //获取好友消息
+                        EMClient.getInstance().chatManager().loadAllConversations();
                         //登录成功
                         ToastUtils.show("登录成功");
 

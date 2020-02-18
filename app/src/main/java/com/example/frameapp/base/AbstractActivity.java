@@ -10,7 +10,10 @@ import android.view.ViewGroup;
 import android.view.Window;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.frameapp.view.dialog.WaitDialog;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -25,7 +28,7 @@ public abstract class AbstractActivity extends AppCompatActivity {
 
     public Context context;
     private Unbinder unbinder;
-    private Handler handler = new Handler(Looper.getMainLooper());
+    private WaitDialog waitDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -72,12 +75,42 @@ public abstract class AbstractActivity extends AppCompatActivity {
     }
 
     /**
-     * 线程
-     *
-     * @param r
-     * @return
+     * 显示加载中(默认)
      */
-    public boolean postHandler(Runnable r) {
-        return handler.post(r);
+    public void showLoading() {
+        showLoading("加载中...");
+    }
+
+    /**
+     * 显示加载中
+     *
+     * @param id id资源
+     */
+    public void showLoading(@StringRes int id) {
+        showLoading(getString(id));
+    }
+
+    /**
+     * 显示加载中
+     *
+     * @param text 填写
+     */
+    public void showLoading(String text) {
+        if (waitDialog == null) {
+            waitDialog = new WaitDialog.Builder(context)
+                    .setMessage(text).create();
+        }
+        if (!waitDialog.isShowing()) {
+            waitDialog.show();
+        }
+    }
+
+    /**
+     * 显示加载完成
+     */
+    public void showComplete() {
+        if (waitDialog != null && waitDialog.isShowing()) {
+            waitDialog.dismiss();
+        }
     }
 }

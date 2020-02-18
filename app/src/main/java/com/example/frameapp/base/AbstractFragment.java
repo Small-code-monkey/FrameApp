@@ -1,5 +1,6 @@
 package com.example.frameapp.base;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +10,12 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
+
+import com.example.frameapp.view.dialog.WaitDialog;
+
+import butterknife.ButterKnife;
 
 /**
  * 基类Fragment
@@ -38,6 +44,7 @@ public abstract class AbstractFragment<A extends AbstractActivity> extends Fragm
      * 是否初始化过
      */
     private boolean mInitialize;
+    private WaitDialog waitDialog;
 
     @SuppressWarnings("unchecked")
     @Override
@@ -66,6 +73,7 @@ public abstract class AbstractFragment<A extends AbstractActivity> extends Fragm
         if (parent != null) {
             parent.removeView(view);
         }
+        ButterKnife.bind(this, view);
         return view;
     }
 
@@ -117,4 +125,53 @@ public abstract class AbstractFragment<A extends AbstractActivity> extends Fragm
      * 初始化数据
      */
     protected abstract void initData();
+
+    /**
+     * startActivity 方法简化
+     *
+     * @param clazz class类
+     */
+    public void startActivity(Class<? extends Activity> clazz) {
+        startActivity(new Intent(getAttachActivity(), clazz));
+    }
+
+    /**
+     * 显示加载中(默认)
+     */
+    public void showLoading() {
+        showLoading("加载中...");
+    }
+
+    /**
+     * 显示加载中
+     *
+     * @param id id资源
+     */
+    public void showLoading(@StringRes int id) {
+        showLoading(getString(id));
+    }
+
+    /**
+     * 显示加载中
+     *
+     * @param text 填写
+     */
+    public void showLoading(String text) {
+        if (waitDialog == null) {
+            waitDialog = new WaitDialog.Builder(context)
+                    .setMessage(text).create();
+        }
+        if (!waitDialog.isShowing()) {
+            waitDialog.show();
+        }
+    }
+
+    /**
+     * 显示加载完成
+     */
+    public void showComplete() {
+        if (waitDialog != null && waitDialog.isShowing()) {
+            waitDialog.dismiss();
+        }
+    }
 }

@@ -25,7 +25,7 @@
     <application
         android:name=".base.BaseApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/planet"
+        android:icon="@mipmap/cactus"
         android:label="@string/app_name"
         android:networkSecurityConfig="@xml/network_config"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -33,7 +33,9 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="n">
-        <activity android:name=".view.activity.HxRegisteredActivity"></activity>
+        <activity android:name=".view.activity.HxDialogueActivity"></activity>
+        <activity android:name=".view.activity.HxAddFriendActivity" />
+        <activity android:name=".view.activity.HxRegisteredActivity" />
         <activity android:name=".view.fragment.HxAddFriendFragment" />
         <activity android:name=".view.fragment.HxGroupFragment" />
         <activity android:name=".view.fragment.HxBuddyFragment" />
@@ -57,7 +59,8 @@
         <service
             android:name="com.hyphenate.chat.EMChatService"
             android:exported="true"
-            android:permission="TODO" />
+            android:permission="TODO"
+            tools:ignore="ExportedService" />
         <service
             android:name="com.hyphenate.chat.EMJobService"
             android:exported="true"

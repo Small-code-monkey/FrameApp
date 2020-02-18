@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:backButton="false"
+        app:rightIcon="@mipmap/search"
         app:title="好友"
         tools:ignore="MissingConstraints" />
 
@@ -21,4 +22,14 @@
         android:overScrollMode="never"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintTop_toBottomOf="@+id/titleBar5" />
+
+    <com.example.frameapp.util.views.LetterIndexView
+        android:id="@+id/lv_hx_buddy"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        app:layout_constraintTop_toBottomOf="@+id/titleBar5"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="387dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

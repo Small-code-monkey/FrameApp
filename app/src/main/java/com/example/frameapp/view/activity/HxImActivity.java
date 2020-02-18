@@ -9,7 +9,6 @@ import com.example.frameapp.adapter.BaseFragmentAdapter;
 import com.example.frameapp.base.BaseActivity;
 import com.example.frameapp.base.BaseFragment;
 import com.example.frameapp.util.views.BaseViewPagerView;
-import com.example.frameapp.view.fragment.HxAddFriendFragment;
 import com.example.frameapp.view.fragment.HxBuddyFragment;
 import com.example.frameapp.view.fragment.HxGroupFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -47,7 +46,6 @@ public class HxImActivity extends BaseActivity implements BottomNavigationView.O
     @Override
     protected void initData() {
         adapter = new BaseFragmentAdapter<>(this);
-        adapter.addFragment(HxAddFriendFragment.newInstance());
         adapter.addFragment(HxBuddyFragment.newInstance());
         adapter.addFragment(HxGroupFragment.newInstance());
         bvPvHxIm.setAdapter(adapter);
@@ -66,14 +64,11 @@ public class HxImActivity extends BaseActivity implements BottomNavigationView.O
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.menu_add_friend:
-                adapter.setCurrentItem(HxAddFriendFragment.class);
-                return true;
             case R.id.menu_buddy:
-                adapter.setCurrentItem(HxBuddyFragment.class);
+                adapter.setCurrentItem(0);
                 return true;
             case R.id.menu_group:
-                adapter.setCurrentItem(HxGroupFragment.class);
+                adapter.setCurrentItem(1);
                 return true;
             default:
                 break;
