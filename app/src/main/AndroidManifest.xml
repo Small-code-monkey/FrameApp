@@ -36,7 +36,6 @@
         <activity android:name=".view.activity.HxDialogueActivity"></activity>
         <activity android:name=".view.activity.HxAddFriendActivity" />
         <activity android:name=".view.activity.HxRegisteredActivity" />
-        <activity android:name=".view.fragment.HxAddFriendFragment" />
         <activity android:name=".view.fragment.HxGroupFragment" />
         <activity android:name=".view.fragment.HxBuddyFragment" />
         <activity android:name=".view.activity.HxImActivity" />
@@ -52,10 +51,18 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- 设置环信应用的AppKey -->
+        </activity>
+
+
+
+
+        <!--        -->
+        <!-- 设置环信应用的AppKey -->
+        <uses-library android:name="org.apache.http.legacy" android:required="false" />
         <meta-data
             android:name="EASEMOB_APPKEY"
-            android:value="1106200105010479#frame" /> <!-- 声明SDK所需的service SDK核心功能 -->
+            android:value="1106200105010479#frame" />
+        <!-- 声明SDK所需的service SDK核心功能 -->
         <service
             android:name="com.hyphenate.chat.EMChatService"
             android:exported="true"
@@ -64,7 +71,8 @@
         <service
             android:name="com.hyphenate.chat.EMJobService"
             android:exported="true"
-            android:permission="android.permission.BIND_JOB_SERVICE" /> <!-- 声明SDK所需的receiver -->
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+        <!-- 声明SDK所需的receiver -->
         <receiver android:name="com.hyphenate.chat.EMMonitorReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.PACKAGE_REMOVED" />

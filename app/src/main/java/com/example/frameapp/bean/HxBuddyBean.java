@@ -12,6 +12,7 @@ import android.os.Parcelable;
 public class HxBuddyBean implements Parcelable {
 
     private String name;
+    private String userId;
     private String time;
     private String news;
 
@@ -21,6 +22,14 @@ public class HxBuddyBean implements Parcelable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getTime() {
@@ -39,7 +48,6 @@ public class HxBuddyBean implements Parcelable {
         this.news = news;
     }
 
-
     @Override
     public int describeContents() {
         return 0;
@@ -48,6 +56,7 @@ public class HxBuddyBean implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.name);
+        dest.writeString(this.userId);
         dest.writeString(this.time);
         dest.writeString(this.news);
     }
@@ -57,6 +66,7 @@ public class HxBuddyBean implements Parcelable {
 
     protected HxBuddyBean(Parcel in) {
         this.name = in.readString();
+        this.userId = in.readString();
         this.time = in.readString();
         this.news = in.readString();
     }

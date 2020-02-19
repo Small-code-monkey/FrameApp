@@ -16,6 +16,11 @@ public class HxDialogueBean {
      */
     public static final int TYPE_SEND = 1;
 
+    public HxDialogueBean(int type, String content) {
+        this.type = type;
+        this.content = content;
+    }
+
     private int type;
     private String content;
 

@@ -1,5 +1,7 @@
 package com.example.frameapp.view.activity;
 
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
@@ -12,6 +14,8 @@ import com.example.frameapp.util.views.BaseViewPagerView;
 import com.example.frameapp.view.fragment.HxBuddyFragment;
 import com.example.frameapp.view.fragment.HxGroupFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.hyphenate.EMCallBack;
+import com.hyphenate.chat.EMClient;
 
 import butterknife.BindView;
 
@@ -74,5 +78,27 @@ public class HxImActivity extends BaseActivity implements BottomNavigationView.O
                 break;
         }
         return false;
+    }
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        //退出账号
+        EMClient.getInstance().logout(true, new EMCallBack() {
+            @Override
+            public void onSuccess() {
+                Log.d("TAG", "----->" + "退出环信账号成功");
+            }
+
+            @Override
+            public void onError(int i, String s) {
+                Log.d("TAG", "----->" + "退出环信账号失败");
+            }
+
+            @Override
+            public void onProgress(int i, String s) {
+
+            }
+        });
+        return super.onKeyUp(keyCode, event);
     }
 }

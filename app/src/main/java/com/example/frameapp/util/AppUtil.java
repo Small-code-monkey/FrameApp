@@ -10,6 +10,14 @@ import android.os.Build;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresPermission;
 
+import com.example.frameapp.R;
+import com.hjq.permissions.OnPermission;
+import com.hjq.permissions.Permission;
+import com.hjq.permissions.XXPermissions;
+import com.hjq.toast.ToastUtils;
+
+import java.util.List;
+
 /**
  * 工具类
  * 2020-02-12

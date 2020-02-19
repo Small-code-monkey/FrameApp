@@ -27,7 +27,7 @@
             style="@style/EditTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="输入用户名" />
+            android:hint="输入用户账号(不支持中文用户名)" />
 
         <View
             android:layout_width="match_parent"

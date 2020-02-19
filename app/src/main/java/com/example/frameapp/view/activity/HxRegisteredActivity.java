@@ -1,8 +1,10 @@
 package com.example.frameapp.view.activity;
 
+import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatTextView;
@@ -11,12 +13,16 @@ import com.example.frameapp.R;
 import com.example.frameapp.base.BaseActivity;
 import com.example.frameapp.util.AppUtil;
 import com.example.frameapp.util.views.ClearEditText;
-import com.hjq.bar.TitleBar;
+import com.hjq.permissions.OnPermission;
+import com.hjq.permissions.Permission;
+import com.hjq.permissions.XXPermissions;
 import com.hjq.toast.ToastUtils;
 import com.hyphenate.EMCallBack;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.exceptions.HyphenateException;
 import com.tencent.mmkv.MMKV;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -39,8 +45,6 @@ public class HxRegisteredActivity extends BaseActivity {
     AppCompatButton buHxRd;
     @BindView(R.id.bu_hx_rd_auto)
     AppCompatButton buHxRdAuto;
-    @BindView(R.id.titleBar7)
-    TitleBar titleBar7;
     @BindView(R.id.bu_hx_rd_login)
     AppCompatButton buHxRdLogin;
 
@@ -62,6 +66,30 @@ public class HxRegisteredActivity extends BaseActivity {
         if (!AppUtil.iConnected(context)) {
             ToastUtils.show("检查网络连接");
         }
+        etRdUser.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+        etRdPwd.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+
+        // 动态申请权限 无权限环信报错（Failed to open database '/storage/emulated/0/emlibs/libs/monitor.db'.）
+        XXPermissions.with(this)
+                .permission(Permission.READ_EXTERNAL_STORAGE,
+                        Permission.WRITE_EXTERNAL_STORAGE)
+                .constantRequest()
+                .request(new OnPermission() {
+                    @Override
+                    public void hasPermission(List<String> granted, boolean isAll) {
+                        Log.d("TAG", "----->" + "权限授权成功");
+                    }
+
+                    @Override
+                    public void noPermission(List<String> denied, boolean quick) {
+                        if (quick) {
+                            ToastUtils.show("授权失败，请手动授予权限");
+                            XXPermissions.gotoPermissionSettings(context, false);
+                        } else {
+                            ToastUtils.show("请先授予权限");
+                        }
+                    }
+                });
     }
 
     @OnClick({R.id.tv_hx_rd, R.id.bu_hx_rd, R.id.bu_hx_rd_login, R.id.bu_hx_rd_auto})
@@ -78,7 +106,7 @@ public class HxRegisteredActivity extends BaseActivity {
                         String password = etRdPwd.getText().toString().trim();
 
                         if (TextUtils.isEmpty(name) || TextUtils.isEmpty(password)) {
-                            ToastUtils.show("账号密码不能为空");
+                            ToastUtils.show("账号或密码不能为空");
                             return;
                         }
                         showLoading();
@@ -98,7 +126,7 @@ public class HxRegisteredActivity extends BaseActivity {
                 String nameLogin = etRdUser.getText().toString().trim();
                 String passwordLogin = etRdPwd.getText().toString().trim();
                 if (TextUtils.isEmpty(nameLogin) || TextUtils.isEmpty(passwordLogin)) {
-                    ToastUtils.show("账号密码不能为空");
+                    ToastUtils.show("账号或密码不能为空");
                     return;
                 }
                 EMClient.getInstance().login(nameLogin, passwordLogin, new EMCallBack() {
@@ -116,7 +144,7 @@ public class HxRegisteredActivity extends BaseActivity {
                         mmkv.encode("name", nameLogin);
                         mmkv.encode("pwd", passwordLogin);
 
-                        //进入聊天页面
+                        //进入聊天模块
                         startActivity(HxImActivity.class);
                     }
 
@@ -124,6 +152,7 @@ public class HxRegisteredActivity extends BaseActivity {
                     public void onError(int i, String s) {
                         //登录失败
                         ToastUtils.show("登陆失败" + s);
+                        Log.d("TAG", "----->" + "s:"+s);
                     }
 
                     @Override
@@ -146,7 +175,7 @@ public class HxRegisteredActivity extends BaseActivity {
                     public void onSuccess() {
                         //登录成功
                         ToastUtils.show("登录成功");
-                        //进入聊天页面
+                        //进入聊天模块
                         startActivity(HxImActivity.class);
                     }
 

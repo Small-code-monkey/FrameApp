@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="50dp"
+    tools:context=".adapter.rv.RvDialogueAdapter">
 
     <LinearLayout
         android:id="@+id/item_ll_receive"
@@ -12,15 +14,20 @@
         android:orientation="horizontal">
 
         <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/im_left_user"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@mipmap/sub_account" />
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@mipmap/chat_left"
+            android:gravity="center">
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_left_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="接收对方消息"
@@ -40,9 +47,13 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@mipmap/chat_right"
+            android:gravity="center">
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_right_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="发送消息"
@@ -51,6 +62,7 @@
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/im_right_user"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@mipmap/user" />

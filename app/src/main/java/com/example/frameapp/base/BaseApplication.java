@@ -1,8 +1,6 @@
 package com.example.frameapp.base;
 
 import android.app.Application;
-import android.os.Environment;
-import android.util.Log;
 
 import com.example.frameapp.R;
 import com.hjq.toast.ToastUtils;
@@ -29,6 +27,8 @@ public class BaseApplication extends Application {
         MMKV.initialize(this);
         //初始化环信
         EMOptions options = new EMOptions();
+        //添加好友无需认证
+        options.setAcceptInvitationAlways(false);
         EMClient.getInstance().init(getApplicationContext(), options);
     }
 }

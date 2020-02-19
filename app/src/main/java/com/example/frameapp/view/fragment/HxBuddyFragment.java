@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -11,13 +12,14 @@ import com.example.frameapp.R;
 import com.example.frameapp.adapter.rv.RvHxBuddyAdapter;
 import com.example.frameapp.base.BaseFragment;
 import com.example.frameapp.bean.HxBuddyBean;
-import com.example.frameapp.util.views.LetterIndexView;
 import com.example.frameapp.view.activity.HxAddFriendActivity;
 import com.example.frameapp.view.activity.HxDialogueActivity;
 import com.example.frameapp.view.activity.HxImActivity;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 
@@ -31,8 +33,8 @@ public class HxBuddyFragment extends BaseFragment<HxImActivity> implements BaseQ
 
     @BindView(R.id.rv_hx_buddy)
     RecyclerView rvHxBuddy;
-    @BindView(R.id.lv_hx_buddy)
-    LetterIndexView lvHxBuddy;
+    @BindView(R.id.tv_lv_hx_buddy)
+    AppCompatTextView tvLvHxBuddy;
 
     private List<HxBuddyBean> buddyBeans;
 
@@ -62,6 +64,7 @@ public class HxBuddyFragment extends BaseFragment<HxImActivity> implements BaseQ
         //默认图灵
         HxBuddyBean buddyBean = new HxBuddyBean();
         buddyBean.setName("图灵");
+        buddyBean.setUserId("tuling");
         buddyBean.setTime("11:00");
         buddyBean.setNews("你好");
         buddyBeans.add(buddyBean);
@@ -69,6 +72,9 @@ public class HxBuddyFragment extends BaseFragment<HxImActivity> implements BaseQ
         RvHxBuddyAdapter buddyAdapter = new RvHxBuddyAdapter(R.layout.item_rv_hx_buddy, buddyBeans);
         rvHxBuddy.setAdapter(buddyAdapter);
         buddyAdapter.setOnItemChildClickListener(this);
+
+        //设置Lv
+
     }
 
     /**
