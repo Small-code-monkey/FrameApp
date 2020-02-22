@@ -99,17 +99,17 @@ public class HxDialogueActivity extends BaseActivity {
 
             @Override
             public void onMessageRead(List<EMMessage> list) {
-
+                //收到已读回执
             }
 
             @Override
             public void onMessageDelivered(List<EMMessage> list) {
-
+                //收到已送达回执
             }
 
             @Override
             public void onMessageRecalled(List<EMMessage> list) {
-
+                //消息被撤回
             }
 
             @Override

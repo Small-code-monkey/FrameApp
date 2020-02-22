@@ -5,21 +5,29 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    app:cardBackgroundColor="#000000"
-    app:cardCornerRadius="10dp"
+    android:background="#00000000"
+    app:cardBackgroundColor="#D9000000"
+    app:cardCornerRadius="15dp"
+    app:cardElevation="0dp"
     tools:context=".view.dialog.WaitDialog">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@android:color/black"
         android:gravity="center"
         android:minWidth="110dp"
         android:minHeight="110dp"
         android:orientation="vertical">
 
-        <ProgressBar
+        <com.example.frameapp.util.views.ProgressView
             android:layout_width="60dp"
-            android:layout_height="60dp" />
+            android:layout_height="60dp"
+            app:barColor="@android:color/white"
+            app:barWidth="2dp"
+            app:fillRadius="false"
+            app:linearProgress="true"
+            app:progressIndeterminate="true" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_wait_message"

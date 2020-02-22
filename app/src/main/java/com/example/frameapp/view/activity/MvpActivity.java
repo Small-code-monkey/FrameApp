@@ -1,5 +1,7 @@
 package com.example.frameapp.view.activity;
 
+import android.view.View;
+
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.frameapp.R;
@@ -9,7 +11,7 @@ import com.example.frameapp.bean.MvpTestDataBean;
 import com.example.frameapp.mvp.contract.MvpContract;
 import com.example.frameapp.mvp.presenter.MvpPresenter;
 import com.example.frameapp.util.AppUtil;
-import com.hjq.bar.TitleBar;
+import com.example.frameapp.view.dialog.MenuPopupDialog;
 import com.hjq.toast.ToastUtils;
 
 import java.util.List;
@@ -28,6 +30,7 @@ public class MvpActivity extends BaseActivity implements
     @BindView(R.id.rv_mvp)
     RecyclerView rvMvp;
 
+    public int PageNum = 1;
     private MvpContract.Presenter presenter;
 
     /**
@@ -52,6 +55,8 @@ public class MvpActivity extends BaseActivity implements
         } else {
             ToastUtils.show("检查网络连接");
         }
+
+//        showLoading();
     }
 
     /**
@@ -71,7 +76,7 @@ public class MvpActivity extends BaseActivity implements
      */
     @Override
     public int setPageNum() {
-        return 1;
+        return PageNum;
     }
 
     /**
@@ -99,5 +104,27 @@ public class MvpActivity extends BaseActivity implements
     @Override
     public void endLoading() {
         showComplete();
+    }
+
+    @Override
+    public void onRightClick(View v) {
+        new MenuPopupDialog.Builder(context)
+                .setList("上一页", "下一页")
+                .setListener(position -> {
+                    if (1 == PageNum) {
+                        ToastUtils.show("当前第一页");
+                        return;
+                    }
+                    switch (position) {
+                        case 0:
+                            PageNum--;
+                            break;
+                        case 1:
+                            PageNum++;
+                            break;
+                        default:
+                            break;
+                    }
+                }).create().show();
     }
 }

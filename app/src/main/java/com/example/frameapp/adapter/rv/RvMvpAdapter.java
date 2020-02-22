@@ -1,7 +1,5 @@
 package com.example.frameapp.adapter.rv;
 
-import android.widget.ImageView;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
 
@@ -40,7 +38,7 @@ public class RvMvpAdapter extends BaseQuickAdapter<MvpTestDataBean.DataBean.Item
      */
     @Override
     protected void convert(BaseViewHolder helper, MvpTestDataBean.DataBean.ItemBean item) {
-        Glide.with(helper.getConvertView()).load("http:" + item.getUrl())
+        Glide.with(mContext).load("http:" + item.getUrl())
                 .into((AppCompatImageView) helper.getView(R.id.item_im_mvp));
         helper.setText(R.id.item_tv_mvp, item.getCopyright());
     }

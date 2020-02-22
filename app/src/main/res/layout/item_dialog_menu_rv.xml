@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.AppCompatTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_tv_dialog_popup"
+    android:layout_width="50dp"
+    android:layout_height="40dp"
+    android:orientation="vertical"
+    android:textColor="@android:color/darker_gray"
+    android:textSize="15dp" />

@@ -10,6 +10,7 @@
         android:id="@+id/titleBar4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:rightIcon="@mipmap/refresh"
         app:title="MVP"
         tools:ignore="MissingConstraints" />
 
@@ -22,4 +23,8 @@
         app:layout_constraintTop_toBottomOf="@+id/titleBar4"
         tools:ignore="MissingConstraints" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        tools:ignore="MissingConstraints" />
 </androidx.constraintlayout.widget.ConstraintLayout>

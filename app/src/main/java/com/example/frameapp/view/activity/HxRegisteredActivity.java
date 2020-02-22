@@ -4,7 +4,6 @@ import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatTextView;
@@ -129,6 +128,7 @@ public class HxRegisteredActivity extends BaseActivity {
                     ToastUtils.show("账号或密码不能为空");
                     return;
                 }
+                showLoading("登录中...");
                 EMClient.getInstance().login(nameLogin, passwordLogin, new EMCallBack() {
                     @Override
                     public void onSuccess() {
@@ -136,23 +136,23 @@ public class HxRegisteredActivity extends BaseActivity {
                         EMClient.getInstance().groupManager().loadAllGroups();
                         //获取好友消息
                         EMClient.getInstance().chatManager().loadAllConversations();
-                        //登录成功
-                        ToastUtils.show("登录成功");
-
                         //本地存储账号
                         MMKV mmkv = MMKV.defaultMMKV();
                         mmkv.encode("name", nameLogin);
                         mmkv.encode("pwd", passwordLogin);
-
+                        //登录成功
+                        ToastUtils.show("登录成功");
                         //进入聊天模块
                         startActivity(HxImActivity.class);
+                        showComplete();
                     }
 
                     @Override
                     public void onError(int i, String s) {
                         //登录失败
                         ToastUtils.show("登陆失败" + s);
-                        Log.d("TAG", "----->" + "s:"+s);
+                        Log.d("TAG", "----->" + "s:" + s);
+                        showComplete();
                     }
 
                     @Override
@@ -170,6 +170,7 @@ public class HxRegisteredActivity extends BaseActivity {
                     ToastUtils.show("未查询到账户");
                     return;
                 }
+                showLoading("自动登录中...");
                 EMClient.getInstance().login(name, password, new EMCallBack() {
                     @Override
                     public void onSuccess() {
@@ -177,6 +178,7 @@ public class HxRegisteredActivity extends BaseActivity {
                         ToastUtils.show("登录成功");
                         //进入聊天模块
                         startActivity(HxImActivity.class);
+                        showComplete();
                     }
 
                     @Override
@@ -184,6 +186,7 @@ public class HxRegisteredActivity extends BaseActivity {
                         //登录失败
                         ToastUtils.show("登陆失败" + s);
                         Log.d("TAG", "----->" + "失败：" + s);
+                        showComplete();
                     }
 
                     @Override

@@ -15,6 +15,7 @@ import com.example.frameapp.view.fragment.HxBuddyFragment;
 import com.example.frameapp.view.fragment.HxGroupFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.hyphenate.EMCallBack;
+import com.hyphenate.EMConferenceListener;
 import com.hyphenate.chat.EMClient;
 
 import butterknife.BindView;
@@ -25,7 +26,8 @@ import butterknife.BindView;
  *
  * @author
  */
-public class HxImActivity extends BaseActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+public class HxImActivity extends BaseActivity implements
+        BottomNavigationView.OnNavigationItemSelectedListener {
 
     @BindView(R.id.bv_pv_hx_im)
     BaseViewPagerView bvPvHxIm;
@@ -83,6 +85,7 @@ public class HxImActivity extends BaseActivity implements BottomNavigationView.O
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         //退出账号
+//        EMClient.getInstance().logout(true);
         EMClient.getInstance().logout(true, new EMCallBack() {
             @Override
             public void onSuccess() {
