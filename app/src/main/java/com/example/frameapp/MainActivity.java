@@ -1,7 +1,5 @@
 package com.example.frameapp;
 
-import android.os.Environment;
-import android.util.Log;
 import android.view.View;
 
 import androidx.recyclerview.widget.RecyclerView;

@@ -9,6 +9,7 @@ import com.example.frameapp.R;
 import com.hjq.toast.ToastUtils;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMOptions;
+import com.tencent.bugly.crashreport.CrashReport;
 import com.tencent.mmkv.MMKV;
 
 import java.util.Iterator;
@@ -27,6 +28,8 @@ public class BaseApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        //初始化TenChet Bugly
+        CrashReport.initCrashReport(getApplicationContext(), "a59db56776", false);
         //初始化Toast
         ToastUtils.init(this);
         //初始化TenCentMMKV 配置数据存储地址

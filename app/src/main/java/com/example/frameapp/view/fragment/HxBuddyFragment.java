@@ -62,19 +62,16 @@ public class HxBuddyFragment extends BaseFragment<HxImActivity> implements BaseQ
     protected void initData() {
         buddyBeans = new ArrayList<>();
         //默认图灵
-        HxBuddyBean buddyBean = new HxBuddyBean();
-        buddyBean.setName("图灵");
-        buddyBean.setUserId("tuling");
-        buddyBean.setTime("11:00");
-        buddyBean.setNews("你好");
-        buddyBeans.add(buddyBean);
+//        HxBuddyBean buddyBean = new HxBuddyBean();
+//        buddyBean.setName("图灵");
+//        buddyBean.setUserId("tuling");
+//        buddyBean.setTime("11:00");
+//        buddyBean.setNews("你好");
+//        buddyBeans.add(buddyBean);
 
         RvHxBuddyAdapter buddyAdapter = new RvHxBuddyAdapter(R.layout.item_rv_hx_buddy, buddyBeans);
         rvHxBuddy.setAdapter(buddyAdapter);
         buddyAdapter.setOnItemChildClickListener(this);
-
-        //设置Lv
-
     }
 
     /**

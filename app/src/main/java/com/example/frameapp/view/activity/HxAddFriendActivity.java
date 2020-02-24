@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.frameapp.R;
 import com.example.frameapp.base.BaseActivity;
 import com.hjq.toast.ToastUtils;
+import com.tencent.bugly.crashreport.CrashReport;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -51,7 +52,6 @@ public class HxAddFriendActivity extends BaseActivity {
         String content = etHxAddFriend.getText().toString().trim();
         if (TextUtils.isEmpty(content)) {
             ToastUtils.show("搜索框不能为空");
-            return;
         }
     }
 }
