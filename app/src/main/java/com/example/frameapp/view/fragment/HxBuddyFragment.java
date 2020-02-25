@@ -15,11 +15,11 @@ import com.example.frameapp.bean.HxBuddyBean;
 import com.example.frameapp.view.activity.HxAddFriendActivity;
 import com.example.frameapp.view.activity.HxDialogueActivity;
 import com.example.frameapp.view.activity.HxImActivity;
+import com.hyphenate.chat.EMClient;
+import com.hyphenate.exceptions.HyphenateException;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import butterknife.BindView;
 
@@ -36,6 +36,7 @@ public class HxBuddyFragment extends BaseFragment<HxImActivity> implements BaseQ
     @BindView(R.id.tv_lv_hx_buddy)
     AppCompatTextView tvLvHxBuddy;
 
+    private List<String> userNames;
     private List<HxBuddyBean> buddyBeans;
 
     public static HxBuddyFragment newInstance() {
@@ -60,7 +61,24 @@ public class HxBuddyFragment extends BaseFragment<HxImActivity> implements BaseQ
      */
     @Override
     protected void initData() {
-        buddyBeans = new ArrayList<>();
+        new Thread(() -> {
+            try {
+                //获取用户环信好友体系
+                userNames=new ArrayList<>();
+                buddyBeans = new ArrayList<>();
+                userNames = EMClient.getInstance().contactManager().getAllContactsFromServer();
+                if (userNames.size() > 0) {
+                    for (String nameId : userNames) {
+                        HxBuddyBean buddyBean = new HxBuddyBean();
+                        buddyBean.setUserId(nameId);
+                        buddyBeans.add(buddyBean);
+                    }
+                }
+            } catch (HyphenateException e) {
+                e.printStackTrace();
+            }
+        });
+
         //默认图灵
 //        HxBuddyBean buddyBean = new HxBuddyBean();
 //        buddyBean.setName("图灵");

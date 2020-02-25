@@ -5,6 +5,8 @@
     android文档：http://docs-im.easemob.com/im/android/sdk/import
     androidSDK+Demo: http://www.easemob.com/download/im
 
+    功能文档：http://docs-im.easemob.com/im/android/basics/message
+
 开发时环信版本号是3.6.4： 
     hyphenatechat_3.6.4
     arm64-v8a

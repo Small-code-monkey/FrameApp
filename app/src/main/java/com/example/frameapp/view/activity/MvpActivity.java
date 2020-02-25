@@ -55,8 +55,6 @@ public class MvpActivity extends BaseActivity implements
         } else {
             ToastUtils.show("检查网络连接");
         }
-
-//        showLoading();
     }
 
     /**
@@ -111,12 +109,13 @@ public class MvpActivity extends BaseActivity implements
         new MenuPopupDialog.Builder(context)
                 .setList("上一页", "下一页")
                 .setListener(position -> {
-                    if (1 == PageNum) {
-                        ToastUtils.show("当前第一页");
-                        return;
-                    }
+                    ToastUtils.show("点击");
                     switch (position) {
                         case 0:
+                            if (1 == PageNum) {
+                                ToastUtils.show("当前第一页");
+                                return;
+                            }
                             PageNum--;
                             break;
                         case 1:
@@ -125,6 +124,7 @@ public class MvpActivity extends BaseActivity implements
                         default:
                             break;
                     }
-                }).create().show();
+                })
+                .create().show();
     }
 }

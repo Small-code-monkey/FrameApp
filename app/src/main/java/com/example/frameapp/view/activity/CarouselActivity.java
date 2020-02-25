@@ -3,7 +3,6 @@ package com.example.frameapp.view.activity;
 import com.example.frameapp.R;
 import com.example.frameapp.adapter.BannerCarouseAdapter;
 import com.example.frameapp.base.BaseActivity;
-import com.hjq.bar.TitleBar;
 import com.youth.banner.Banner;
 import com.youth.banner.indicator.CircleIndicator;
 

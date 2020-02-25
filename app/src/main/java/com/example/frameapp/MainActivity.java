@@ -7,12 +7,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.frameapp.adapter.rv.RvMainAdapter;
 import com.example.frameapp.base.BaseActivity;
+import com.example.frameapp.util.AppUtil;
 import com.example.frameapp.view.activity.CarouselActivity;
 import com.example.frameapp.view.activity.GuideMapActivity;
 import com.example.frameapp.view.activity.HxRegisteredActivity;
 import com.example.frameapp.view.activity.MvpActivity;
 import com.example.frameapp.view.activity.TabActivity;
 import com.hjq.bar.TitleBar;
+import com.hjq.toast.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -79,11 +81,19 @@ public class MainActivity extends BaseActivity implements BaseQuickAdapter.OnIte
                 break;
             case 3:
                 //Mvp
-                startActivity(MvpActivity.class);
+                if (!AppUtil.iConnected(context)) {
+                    ToastUtils.show("检查网络连接");
+                } else {
+                    startActivity(MvpActivity.class);
+                }
                 break;
             case 4:
                 //环信Im
-                startActivity(HxRegisteredActivity.class);
+                if (!AppUtil.iConnected(context)) {
+                    ToastUtils.show("检查网络连接");
+                } else {
+                    startActivity(HxRegisteredActivity.class);
+                }
                 break;
             default:
                 break;

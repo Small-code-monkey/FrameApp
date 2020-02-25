@@ -10,7 +10,6 @@ import androidx.appcompat.widget.AppCompatTextView;
 
 import com.example.frameapp.R;
 import com.example.frameapp.base.BaseActivity;
-import com.example.frameapp.util.AppUtil;
 import com.example.frameapp.util.views.ClearEditText;
 import com.hjq.permissions.OnPermission;
 import com.hjq.permissions.Permission;
@@ -62,9 +61,6 @@ public class HxRegisteredActivity extends BaseActivity {
      */
     @Override
     protected void initData() {
-        if (!AppUtil.iConnected(context)) {
-            ToastUtils.show("检查网络连接");
-        }
         etRdUser.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
         etRdPwd.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
 

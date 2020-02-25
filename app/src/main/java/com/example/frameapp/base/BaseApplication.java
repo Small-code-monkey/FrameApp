@@ -47,8 +47,8 @@ public class BaseApplication extends Application {
         }
         //初始化环信
         EMOptions options = new EMOptions();
-        //添加好友无需认证
-        options.setAcceptInvitationAlways(false);
+        //添加好友 false：无需认证 true：需要认证
+        options.setAcceptInvitationAlways(true);
         EMClient.getInstance().init(getApplicationContext(), options);
     }
 

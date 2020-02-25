@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.example.frameapp.R;
-import com.example.frameapp.inter.OnListener;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,7 +25,7 @@ import java.util.List;
  */
 public class MenuPopupDialog extends AppCompatDialog {
 
-    public MenuPopupDialog(@NonNull Context context) {
+    private MenuPopupDialog(@NonNull Context context) {
         super(context);
     }
 
@@ -88,6 +87,7 @@ public class MenuPopupDialog extends AppCompatDialog {
             MenuPopupAdapter adapter = new MenuPopupAdapter(R.layout.item_dialog_menu_rv, mData);
             recyclerView.setAdapter(adapter);
             adapter.setOnItemChildClickListener(this);
+            popupDialog.setContentView(view);
             return popupDialog;
         }
 
@@ -129,5 +129,15 @@ public class MenuPopupDialog extends AppCompatDialog {
         protected void convert(BaseViewHolder helper, String item) {
             helper.setText(R.id.item_tv_dialog_popup, item);
         }
+    }
+
+    public interface OnListener {
+
+        /**
+         * 监听点击事件
+         *
+         * @param position
+         */
+        void mOnClickOnListener(int position);
     }
 }

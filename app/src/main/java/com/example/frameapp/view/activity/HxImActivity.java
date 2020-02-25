@@ -15,7 +15,6 @@ import com.example.frameapp.view.fragment.HxBuddyFragment;
 import com.example.frameapp.view.fragment.HxGroupFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.hyphenate.EMCallBack;
-import com.hyphenate.EMConferenceListener;
 import com.hyphenate.chat.EMClient;
 
 import butterknife.BindView;
@@ -55,7 +54,6 @@ public class HxImActivity extends BaseActivity implements
         adapter.addFragment(HxBuddyFragment.newInstance());
         adapter.addFragment(HxGroupFragment.newInstance());
         bvPvHxIm.setAdapter(adapter);
-
         bnViewHxIm.setOnNavigationItemSelectedListener(this);
     }
 
@@ -85,7 +83,6 @@ public class HxImActivity extends BaseActivity implements
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         //退出账号
-//        EMClient.getInstance().logout(true);
         EMClient.getInstance().logout(true, new EMCallBack() {
             @Override
             public void onSuccess() {

@@ -47,7 +47,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    //google
+    //Google
     implementation "com.google.android.material:material:1.1.0"
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
@@ -78,7 +78,13 @@ dependencies {
     implementation 'com.tencent:mmkv-static:1.0.24'
     // 权限请求框架：https://github.com/getActivity/XXPermissions
     implementation 'com.hjq:xxpermissions:6.2'
-    //TenChet Bugly
-    implementation 'com.tencent.bugly:crashreport:3.1.0' //其中latest.release指代最新Bugly SDK版本号，也可以指定明确的版本号，例如2.1.9
-    implementation 'com.tencent.bugly:nativecrashreport:3.7.1' //其中latest.release指代最新Bugly NDK版本号，也可以指定明确的版本号，例如3.0
+    //TenChet Bugly：https://bugly.qq.com/v2/index
+    implementation 'com.tencent.bugly:crashreport:3.1.0'
+    //其中latest.release指代最新Bugly SDK版本号，也可以指定明确的版本号，例如2.1.9
+    implementation 'com.tencent.bugly:nativecrashreport:3.7.1'
+    //其中latest.release指代最新Bugly NDK版本号，也可以指定明确的版本号，例如3.0
+    //开源图表 MPAndroidChart：https://github.com/PhilJay/MPAndroidChart
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    // 状态栏沉浸：https://github.com/gyf-dev/ImmersionBar
+    implementation 'com.gyf.immersionbar:immersionbar:3.0.0'
 }

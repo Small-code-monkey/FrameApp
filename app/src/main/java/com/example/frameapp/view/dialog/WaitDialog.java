@@ -3,6 +3,7 @@ package com.example.frameapp.view.dialog;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -59,7 +60,6 @@ public class WaitDialog extends AppCompatDialog {
             textView.setText(text);
             textView.setVisibility(text == null ? View.GONE : View.VISIBLE);
             waitDialog.setContentView(view);
-            //android.support.design.R.id.design_bottom_sheet
 
             // 设置参数
             Window window = waitDialog.getWindow();
