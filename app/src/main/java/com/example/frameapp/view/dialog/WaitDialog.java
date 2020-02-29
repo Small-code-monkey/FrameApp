@@ -1,81 +1,48 @@
 package com.example.frameapp.view.dialog;
 
-import android.annotation.SuppressLint;
-import android.app.Dialog;
-import android.content.Context;
-import android.graphics.Color;
-import android.view.Gravity;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 
-import androidx.annotation.StringRes;
-import androidx.appcompat.app.AppCompatDialog;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.fragment.app.DialogFragment;
 
 import com.example.frameapp.R;
+import com.example.frameapp.util.AppUtil;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
- * 加载对话框
- * 2020-02-15
+ * 加载Dialog
+ * 2020/2/28
  *
  * @author
  */
-public class WaitDialog extends AppCompatDialog {
+public class WaitDialog extends DialogFragment {
 
-    private WaitDialog(Context context) {
-        super(context);
+    @BindView(R.id.tv_wait_message)
+    AppCompatTextView tvWaitMessage;
+
+    public static WaitDialog newInstance(String content) {
+        Bundle args = new Bundle();
+        WaitDialog fragment = new WaitDialog();
+        args.putString("text", content);
+        fragment.setArguments(args);
+        return fragment;
     }
 
-    public static class Builder {
-        private Context context;
-        private String text;
-
-        public Builder(Context context) {
-            this.context = context;
-        }
-
-        /**
-         * 支持id
-         *
-         * @param text
-         * @return
-         */
-        public Builder setMessage(@StringRes int text) {
-            return setMessage(context.getString(text));
-        }
-
-        public Builder setMessage(String text) {
-            this.text = text;
-            return this;
-        }
-
-        @SuppressLint("ResourceAsColor")
-        public WaitDialog create() {
-            WaitDialog waitDialog = new WaitDialog(context);
-            View view = LayoutInflater.from(context).inflate(R.layout.dialog_wait, null);
-            AppCompatTextView textView = view.findViewById(R.id.tv_wait_message);
-            textView.setText(text);
-            textView.setVisibility(text == null ? View.GONE : View.VISIBLE);
-            waitDialog.setContentView(view);
-
-            // 设置参数
-            Window window = waitDialog.getWindow();
-            if (window != null) {
-                WindowManager.LayoutParams params = window.getAttributes();
-                params.width = ViewGroup.LayoutParams.WRAP_CONTENT;
-                params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
-                params.gravity = Gravity.CENTER;
-                params.windowAnimations = 0;
-                window.setAttributes(params);
-                window.setWindowAnimations(android.R.style.Animation_Toast);
-                window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-            }
-
-            return waitDialog;
-        }
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.dialog_wait, container, false);
+        ButterKnife.bind(this, view);
+        assert getArguments() != null;
+        tvWaitMessage.setText(getArguments().getString("text"));
+        AppUtil.setWindow(getDialog().getWindow());
+        return view;
     }
-
 }

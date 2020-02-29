@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.view.ViewGroup;
 import android.view.Window;
 
@@ -34,10 +32,6 @@ public abstract class AbstractActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         context = this;
-        initLayout();
-    }
-
-    protected void initLayout() {
         setContentView(getLayout());
         unbinder = ButterKnife.bind(this);
         initData();
@@ -96,20 +90,15 @@ public abstract class AbstractActivity extends AppCompatActivity {
      * @param text 填写
      */
     public void showLoading(String text) {
-        if (waitDialog == null) {
-            waitDialog = new WaitDialog.Builder(context)
-                    .setMessage(text).create();
-        }
-        if (!waitDialog.isShowing()) {
-            waitDialog.show();
-        }
+        waitDialog = WaitDialog.newInstance(text);
+        waitDialog.show(getSupportFragmentManager(), "dialog");
     }
 
     /**
      * 显示加载完成
      */
     public void showComplete() {
-        if (waitDialog != null && waitDialog.isShowing()) {
+        if (waitDialog != null) {
             waitDialog.dismiss();
         }
     }

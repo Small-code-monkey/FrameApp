@@ -12,6 +12,7 @@ import com.example.frameapp.view.activity.CarouselActivity;
 import com.example.frameapp.view.activity.GuideMapActivity;
 import com.example.frameapp.view.activity.HxRegisteredActivity;
 import com.example.frameapp.view.activity.MvpActivity;
+import com.example.frameapp.view.activity.ViewModelActivity;
 import com.example.frameapp.view.activity.TabActivity;
 import com.hjq.bar.TitleBar;
 import com.hjq.toast.ToastUtils;
@@ -93,6 +94,17 @@ public class MainActivity extends BaseActivity implements BaseQuickAdapter.OnIte
                     ToastUtils.show("检查网络连接");
                 } else {
                     startActivity(HxRegisteredActivity.class);
+                }
+                break;
+            case 5:
+                //开源图表
+                break;
+            case 6:
+                //Mvvm
+                if (!AppUtil.iConnected(context)) {
+                    ToastUtils.show("检查网络连接");
+                } else {
+                    startActivity(ViewModelActivity.class);
                 }
                 break;
             default:

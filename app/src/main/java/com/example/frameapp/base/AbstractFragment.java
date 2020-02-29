@@ -157,20 +157,15 @@ public abstract class AbstractFragment<A extends AbstractActivity> extends Fragm
      * @param text 填写
      */
     public void showLoading(String text) {
-        if (waitDialog == null) {
-            waitDialog = new WaitDialog.Builder(context)
-                    .setMessage(text).create();
-        }
-        if (!waitDialog.isShowing()) {
-            waitDialog.show();
-        }
+        waitDialog = WaitDialog.newInstance(text);
+        waitDialog.show(getActivity().getSupportFragmentManager(), "dialog");
     }
 
     /**
      * 显示加载完成
      */
     public void showComplete() {
-        if (waitDialog != null && waitDialog.isShowing()) {
+        if (waitDialog != null) {
             waitDialog.dismiss();
         }
     }

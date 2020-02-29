@@ -7,7 +7,6 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 
 import com.example.frameapp.action.TitleBarAction;
-import com.example.frameapp.view.dialog.WaitDialog;
 import com.hjq.bar.TitleBar;
 
 import butterknife.ButterKnife;
@@ -26,18 +25,6 @@ public abstract class BaseActivity extends AbstractActivity implements
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }
-
-    /**
-     * 获取标题栏 id
-     */
-    protected int getTitleId() {
-        return 0;
-    }
-
-    @Override
-    protected void initLayout() {
-        super.initLayout();
         //TitleBar点击事件
         if (getTitleBar() != null) {
             getTitleBar().setOnTitleBarListener(this);
@@ -53,6 +40,13 @@ public abstract class BaseActivity extends AbstractActivity implements
             titleBar = findTitleBar(getContentView());
         }
         ButterKnife.bind(this);
+    }
+
+    /**
+     * 获取标题栏 id
+     */
+    protected int getTitleId() {
+        return 0;
     }
 
     /**

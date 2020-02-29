@@ -14,6 +14,8 @@ import com.example.frameapp.util.AppUtil;
 import com.example.frameapp.view.dialog.MenuPopupDialog;
 import com.hjq.toast.ToastUtils;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
@@ -24,14 +26,12 @@ import butterknife.BindView;
  *
  * @author
  */
-public class MvpActivity extends BaseActivity implements
-        MvpContract.View<MvpTestDataBean> {
+public class MvpActivity extends BaseActivity implements MvpContract.View<MvpTestDataBean> {
 
     @BindView(R.id.rv_mvp)
     RecyclerView rvMvp;
 
-    public int PageNum = 1;
-    private MvpContract.Presenter presenter;
+    public int pageNum = 1;
 
     /**
      * 获取布局
@@ -50,7 +50,7 @@ public class MvpActivity extends BaseActivity implements
     protected void initData() {
         //请求数据
         if (AppUtil.iConnected(context)) {
-            presenter = new MvpPresenter(this);
+            MvpContract.Presenter presenter = new MvpPresenter(this);
             presenter.methodData();
         } else {
             ToastUtils.show("检查网络连接");
@@ -74,7 +74,7 @@ public class MvpActivity extends BaseActivity implements
      */
     @Override
     public int setPageNum() {
-        return PageNum;
+        return pageNum;
     }
 
     /**
@@ -106,25 +106,27 @@ public class MvpActivity extends BaseActivity implements
 
     @Override
     public void onRightClick(View v) {
-        new MenuPopupDialog.Builder(context)
-                .setList("上一页", "下一页")
-                .setListener(position -> {
-                    ToastUtils.show("点击");
-                    switch (position) {
-                        case 0:
-                            if (1 == PageNum) {
-                                ToastUtils.show("当前第一页");
-                                return;
-                            }
-                            PageNum--;
-                            break;
-                        case 1:
-                            PageNum++;
-                            break;
-                        default:
-                            break;
+        MenuPopupDialog menuPopupDingDialog = MenuPopupDialog.newInstance
+                (new ArrayList<>(Arrays.asList("上一页", "下一页")));
+        menuPopupDingDialog.setMenuOnListener(position -> {
+            switch (position) {
+                case 0:
+                    if (1 == pageNum) {
+                        ToastUtils.show("当前第一页");
+                    } else {
+                        pageNum--;
+                        initData();
                     }
-                })
-                .create().show();
+                    break;
+                case 1:
+                    pageNum++;
+                    initData();
+                    break;
+                default:
+                    break;
+            }
+            menuPopupDingDialog.getDialog().dismiss();
+        });
+        menuPopupDingDialog.show(getSupportFragmentManager(), "menuDialog");
     }
 }

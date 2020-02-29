@@ -2,21 +2,18 @@ package com.example.frameapp.util;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkCapabilities;
 import android.net.NetworkInfo;
 import android.os.Build;
+import android.view.Gravity;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresPermission;
-
-import com.example.frameapp.R;
-import com.hjq.permissions.OnPermission;
-import com.hjq.permissions.Permission;
-import com.hjq.permissions.XXPermissions;
-import com.hjq.toast.ToastUtils;
-
-import java.util.List;
 
 /**
  * 工具类
@@ -48,5 +45,24 @@ public class AppUtil {
             }
         }
         return false;
+    }
+
+    /**
+     * 设置Dialog
+     *
+     * @param window
+     */
+    public static void setWindow(Window window) {
+        if (window != null) {
+            WindowManager.LayoutParams params = window.getAttributes();
+            params.width = ViewGroup.LayoutParams.WRAP_CONTENT;
+            params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+            params.gravity = Gravity.CENTER;
+            params.windowAnimations = 0;
+            window.setAttributes(params);
+            window.setWindowAnimations(android.R.style.Animation_Toast);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+            window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        }
     }
 }

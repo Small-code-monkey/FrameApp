@@ -75,10 +75,6 @@ public class MessageDialog extends AppCompatDialog {
             return this;
         }
 
-        public String getMessage() {
-            return etContext;
-        }
-
         public MessageDialog create() {
             messageDialog = new MessageDialog(context);
             View view = LayoutInflater.from(context).inflate(R.layout.dialog_message, null);
@@ -120,7 +116,7 @@ public class MessageDialog extends AppCompatDialog {
                 case R.id.dialog_tv_me_determine:
                     //确定
                     if (mListener != null) {
-                        mListener.onDetermine();
+                        mListener.onDetermine(etContext);
                     }
                     break;
                 default:
@@ -142,7 +138,9 @@ public class MessageDialog extends AppCompatDialog {
 
         /**
          * 确定按钮
+         *
+         * @param et 添加理由
          */
-        void onDetermine();
+        void onDetermine(String et);
     }
 }
