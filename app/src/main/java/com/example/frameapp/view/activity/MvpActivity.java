@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.frameapp.R;
 import com.example.frameapp.adapter.rv.RvMvpAdapter;
 import com.example.frameapp.base.BaseActivity;
-import com.example.frameapp.bean.MvpTestDataBean;
+import com.example.frameapp.bean.BingMvpDataBean;
 import com.example.frameapp.mvp.contract.MvpContract;
 import com.example.frameapp.mvp.presenter.MvpPresenter;
 import com.example.frameapp.util.AppUtil;
@@ -26,12 +26,11 @@ import butterknife.BindView;
  *
  * @author
  */
-public class MvpActivity extends BaseActivity implements MvpContract.View<MvpTestDataBean> {
-
-    @BindView(R.id.rv_mvp)
-    RecyclerView rvMvp;
+public class MvpActivity extends BaseActivity implements MvpContract.View<BingMvpDataBean> {
 
     public int pageNum = 1;
+    @BindView(R.id.rv_mvp)
+    RecyclerView rvMvp;
 
     /**
      * 获取布局
@@ -83,7 +82,7 @@ public class MvpActivity extends BaseActivity implements MvpContract.View<MvpTes
      * @param dataBeans
      */
     @Override
-    public void getData(List<MvpTestDataBean> dataBeans) {
+    public void getData(List<BingMvpDataBean> dataBeans) {
         RvMvpAdapter rvMvpAdapter = new RvMvpAdapter(R.layout.item_rv_mvp, dataBeans.get(0).getData().getItem());
         rvMvp.setAdapter(rvMvpAdapter);
     }

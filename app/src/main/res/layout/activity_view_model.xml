@@ -8,17 +8,18 @@
     tools:context=".view.activity.ViewModelActivity">
 
     <com.hjq.bar.TitleBar
-        android:id="@+id/titleBar9"
+        android:id="@+id/titleBar3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:title="ViewModel"
         tools:ignore="MissingConstraints" />
 
-    <Button
-        android:id="@+id/bu_view_model"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_view_model"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="测试点击"
-        app:layout_constraintTop_toBottomOf="@+id/titleBar9"
+        android:overScrollMode="never"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintTop_toBottomOf="@+id/titleBar3"
         tools:ignore="MissingConstraints" />
 </androidx.constraintlayout.widget.ConstraintLayout>

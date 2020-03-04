@@ -11,8 +11,6 @@ import androidx.annotation.Nullable;
 import com.example.frameapp.action.TitleBarAction;
 import com.hjq.bar.TitleBar;
 
-import butterknife.ButterKnife;
-
 /**
  * 基类Fragment
  * 2020-02-13

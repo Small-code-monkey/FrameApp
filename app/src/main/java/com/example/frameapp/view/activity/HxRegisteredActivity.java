@@ -138,7 +138,7 @@ public class HxRegisteredActivity extends BaseActivity {
                         mmkv.encode("pwd", passwordLogin);
                         //登录成功
                         ToastUtils.show("登录成功");
-                        //进入聊天模块
+                        //进入聊天页面
                         startActivity(HxImActivity.class);
                         showComplete();
                     }
@@ -146,7 +146,7 @@ public class HxRegisteredActivity extends BaseActivity {
                     @Override
                     public void onError(int i, String s) {
                         //登录失败
-                        ToastUtils.show("登陆失败" + s);
+                        ToastUtils.show("登陆失败：" + s);
                         Log.d("TAG", "----->" + "s:" + s);
                         showComplete();
                     }
@@ -180,7 +180,7 @@ public class HxRegisteredActivity extends BaseActivity {
                     @Override
                     public void onError(int i, String s) {
                         //登录失败
-                        ToastUtils.show("登陆失败" + s);
+                        ToastUtils.show("登陆失败：" + s);
                         Log.d("TAG", "----->" + "失败：" + s);
                         showComplete();
                     }

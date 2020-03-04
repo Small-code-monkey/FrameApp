@@ -9,11 +9,12 @@ import com.example.frameapp.adapter.rv.RvMainAdapter;
 import com.example.frameapp.base.BaseActivity;
 import com.example.frameapp.util.AppUtil;
 import com.example.frameapp.view.activity.CarouselActivity;
+import com.example.frameapp.view.activity.ChartActivity;
 import com.example.frameapp.view.activity.GuideMapActivity;
 import com.example.frameapp.view.activity.HxRegisteredActivity;
 import com.example.frameapp.view.activity.MvpActivity;
-import com.example.frameapp.view.activity.ViewModelActivity;
 import com.example.frameapp.view.activity.TabActivity;
+import com.example.frameapp.view.activity.ViewModelActivity;
 import com.hjq.bar.TitleBar;
 import com.hjq.toast.ToastUtils;
 
@@ -98,6 +99,7 @@ public class MainActivity extends BaseActivity implements BaseQuickAdapter.OnIte
                 break;
             case 5:
                 //开源图表
+                startActivity(ChartActivity.class);
                 break;
             case 6:
                 //Mvvm

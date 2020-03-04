@@ -15,14 +15,12 @@ public class HxDialogueBean {
      * 消息的类型:发送
      */
     public static final int TYPE_SEND = 1;
-
+    private int type;
+    private String content;
     public HxDialogueBean(int type, String content) {
         this.type = type;
         this.content = content;
     }
-
-    private int type;
-    private String content;
 
     public int getType() {
         return type;

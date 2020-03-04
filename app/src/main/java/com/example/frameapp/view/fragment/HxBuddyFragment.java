@@ -64,7 +64,7 @@ public class HxBuddyFragment extends BaseFragment<HxImActivity> implements BaseQ
         new Thread(() -> {
             try {
                 //获取用户环信好友体系
-                userNames=new ArrayList<>();
+                userNames = new ArrayList<>();
                 buddyBeans = new ArrayList<>();
                 userNames = EMClient.getInstance().contactManager().getAllContactsFromServer();
                 if (userNames.size() > 0) {
@@ -78,14 +78,6 @@ public class HxBuddyFragment extends BaseFragment<HxImActivity> implements BaseQ
                 e.printStackTrace();
             }
         });
-
-        //默认图灵
-//        HxBuddyBean buddyBean = new HxBuddyBean();
-//        buddyBean.setName("图灵");
-//        buddyBean.setUserId("tuling");
-//        buddyBean.setTime("11:00");
-//        buddyBean.setNews("你好");
-//        buddyBeans.add(buddyBean);
 
         RvHxBuddyAdapter buddyAdapter = new RvHxBuddyAdapter(R.layout.item_rv_hx_buddy, buddyBeans);
         rvHxBuddy.setAdapter(buddyAdapter);

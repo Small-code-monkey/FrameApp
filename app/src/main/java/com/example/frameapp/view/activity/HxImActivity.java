@@ -25,8 +25,7 @@ import butterknife.BindView;
  *
  * @author
  */
-public class HxImActivity extends BaseActivity implements
-        BottomNavigationView.OnNavigationItemSelectedListener {
+public class HxImActivity extends BaseActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     @BindView(R.id.bv_pv_hx_im)
     BaseViewPagerView bvPvHxIm;

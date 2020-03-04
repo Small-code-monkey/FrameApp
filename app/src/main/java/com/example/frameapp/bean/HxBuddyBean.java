@@ -11,10 +11,31 @@ import android.os.Parcelable;
  */
 public class HxBuddyBean implements Parcelable {
 
+    public static final Parcelable.Creator<HxBuddyBean> CREATOR = new Parcelable.Creator<HxBuddyBean>() {
+        @Override
+        public HxBuddyBean createFromParcel(Parcel source) {
+            return new HxBuddyBean(source);
+        }
+
+        @Override
+        public HxBuddyBean[] newArray(int size) {
+            return new HxBuddyBean[size];
+        }
+    };
     private String name;
     private String userId;
     private String time;
     private String news;
+
+    public HxBuddyBean() {
+    }
+
+    protected HxBuddyBean(Parcel in) {
+        this.name = in.readString();
+        this.userId = in.readString();
+        this.time = in.readString();
+        this.news = in.readString();
+    }
 
     public String getName() {
         return name;
@@ -60,26 +81,4 @@ public class HxBuddyBean implements Parcelable {
         dest.writeString(this.time);
         dest.writeString(this.news);
     }
-
-    public HxBuddyBean() {
-    }
-
-    protected HxBuddyBean(Parcel in) {
-        this.name = in.readString();
-        this.userId = in.readString();
-        this.time = in.readString();
-        this.news = in.readString();
-    }
-
-    public static final Parcelable.Creator<HxBuddyBean> CREATOR = new Parcelable.Creator<HxBuddyBean>() {
-        @Override
-        public HxBuddyBean createFromParcel(Parcel source) {
-            return new HxBuddyBean(source);
-        }
-
-        @Override
-        public HxBuddyBean[] newArray(int size) {
-            return new HxBuddyBean[size];
-        }
-    };
 }

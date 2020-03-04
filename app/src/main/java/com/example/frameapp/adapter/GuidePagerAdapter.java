@@ -9,7 +9,6 @@ import androidx.appcompat.widget.AppCompatImageView;
 import androidx.viewpager.widget.PagerAdapter;
 
 import com.bumptech.glide.Glide;
-import com.example.frameapp.R;
 import com.example.frameapp.base.BaseApplication;
 import com.example.frameapp.util.AppUtil;
 

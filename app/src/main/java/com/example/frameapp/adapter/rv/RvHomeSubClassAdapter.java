@@ -1,24 +1,20 @@
 package com.example.frameapp.adapter.rv;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatImageView;
 
-import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.example.frameapp.R;
-import com.example.frameapp.bean.BingMvpDataBean;
 
 import java.util.List;
 
 /**
- * MvpActivity RecyclerView 适配器
- * 2020-02-15
+ * HomeSubClassFragment Rv适配器
+ * 2020/3/2
  *
  * @author
  */
-public class RvMvpAdapter extends BaseQuickAdapter<BingMvpDataBean.DataBean.ItemBean, BaseViewHolder> {
-
+public class RvHomeSubClassAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
     /**
      * Same as QuickAdapter#QuickAdapter(Context,int) but with
      * some initialization data.
@@ -26,7 +22,7 @@ public class RvMvpAdapter extends BaseQuickAdapter<BingMvpDataBean.DataBean.Item
      * @param layoutResId The layout resource id of each item.
      * @param data        A new list is created out of this one to avoid mutable list
      */
-    public RvMvpAdapter(int layoutResId, @Nullable List<BingMvpDataBean.DataBean.ItemBean> data) {
+    public RvHomeSubClassAdapter(int layoutResId, @Nullable List<String> data) {
         super(layoutResId, data);
     }
 
@@ -37,9 +33,7 @@ public class RvMvpAdapter extends BaseQuickAdapter<BingMvpDataBean.DataBean.Item
      * @param item   The item that needs to be displayed.
      */
     @Override
-    protected void convert(BaseViewHolder helper, BingMvpDataBean.DataBean.ItemBean item) {
-        Glide.with(mContext).load("http:" + item.getUrl())
-                .into((AppCompatImageView) helper.getView(R.id.item_im_mvp));
-        helper.setText(R.id.item_tv_mvp, item.getCopyright());
+    protected void convert(BaseViewHolder helper, String item) {
+        helper.setText(R.id.item_tv_dialog_popup, item);
     }
 }

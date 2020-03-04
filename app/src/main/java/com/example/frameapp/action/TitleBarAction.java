@@ -69,6 +69,18 @@ public interface TitleBarAction extends OnTitleBarListener {
     }
 
     /**
+     * 获取标题栏左标题
+     *
+     * @return
+     */
+    default CharSequence getLeftTitle() {
+        if (getTitleBar() != null) {
+            return getTitleBar().getLeftTitle();
+        }
+        return "";
+    }
+
+    /**
      * 设置标题栏的左标题
      *
      * @param id
@@ -91,13 +103,13 @@ public interface TitleBarAction extends OnTitleBarListener {
     }
 
     /**
-     * 获取标题栏左标题
+     * 获取标题栏右标题
      *
      * @return
      */
-    default CharSequence getLeftTitle() {
+    default CharSequence getRightTitle() {
         if (getTitleBar() != null) {
-            return getTitleBar().getLeftTitle();
+            return getTitleBar().getRightTitle();
         }
         return "";
     }
@@ -124,16 +136,12 @@ public interface TitleBarAction extends OnTitleBarListener {
         }
     }
 
-    /**
-     * 获取标题栏右标题
-     *
-     * @return
-     */
-    default CharSequence getRightTitle() {
+    @Nullable
+    default Drawable getLeftIcon() {
         if (getTitleBar() != null) {
-            return getTitleBar().getRightTitle();
+            return getTitleBar().getLeftIcon();
         }
-        return "";
+        return null;
     }
 
     /**
@@ -147,17 +155,21 @@ public interface TitleBarAction extends OnTitleBarListener {
         }
     }
 
-
     default void setLeftIcon(Drawable drawable) {
         if (getTitleBar() != null) {
             getTitleBar().setLeftIcon(drawable);
         }
     }
 
+    /**
+     * 获取标题栏右图标
+     *
+     * @return
+     */
     @Nullable
-    default Drawable getLeftIcon() {
+    default Drawable getRightIcon() {
         if (getTitleBar() != null) {
-            return getTitleBar().getLeftIcon();
+            return getTitleBar().getRightIcon();
         }
         return null;
     }
@@ -182,19 +194,6 @@ public interface TitleBarAction extends OnTitleBarListener {
         if (getTitleBar() != null) {
             getTitleBar().setRightIcon(drawable);
         }
-    }
-
-    /**
-     * 获取标题栏右图标
-     *
-     * @return
-     */
-    @Nullable
-    default Drawable getRightIcon() {
-        if (getTitleBar() != null) {
-            return getTitleBar().getRightIcon();
-        }
-        return null;
     }
 
     /**

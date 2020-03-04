@@ -1,143 +1,121 @@
 package com.example.frameapp.view.dialog;
 
-import android.content.Context;
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 
-import androidx.appcompat.app.AppCompatDialog;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.fragment.app.DialogFragment;
 
 import com.example.frameapp.R;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 /**
- * 确定dialog
- * 2020-02-24
+ * 消息Dialog
+ * 2020/3/1
  *
  * @author
  */
-public class MessageDialog extends AppCompatDialog {
+public class MessageDialog extends DialogFragment {
 
-    private MessageDialog(Context context) {
-        super(context);
+    @BindView(R.id.dialog_title_tv)
+    AppCompatTextView dialogTitleTv;
+    @BindView(R.id.dialog_message_tv)
+    AppCompatTextView dialogMessageTv;
+    @BindView(R.id.dialog_message_et)
+    AppCompatEditText dialogMessageEt;
+    @BindView(R.id.dialog_tv_me_cancel)
+    AppCompatTextView dialogTvMeCancel;
+    @BindView(R.id.dialog_tv_me_determine)
+    AppCompatTextView dialogTvMeDetermine;
+
+    private boolean isEt;
+    private MessageOnViewListener messageOnViewListener;
+    private String titles;
+    private String messages;
+    private String etContent;
+
+    public static MessageDialog newInstance() {
+        Bundle args = new Bundle();
+        MessageDialog fragment = new MessageDialog();
+        fragment.setArguments(args);
+        return fragment;
     }
 
-    public static class Builder implements View.OnClickListener {
-        private MessageDialog messageDialog;
-        private Context context;
-        private String title;
-        private String message;
-        private String cancel;
-        private String determine;
-        private String etContext;
-        private boolean isTvEt;
+    public MessageDialog setEt(boolean et) {
+        isEt = et;
+        return this;
+    }
 
-        private OnViewListener mListener;
+    public MessageDialog setTitles(String titles) {
+        this.titles = titles;
+        return this;
+    }
 
-        public Builder(Context context) {
-            this.context = context;
+    public MessageDialog setMessages(String messages) {
+        this.messages = messages;
+        return this;
+    }
+
+    public void setMessageOnViewListener(MessageOnViewListener messageOnViewListener) {
+        this.messageOnViewListener = messageOnViewListener;
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.dialog_message, container, false);
+        ButterKnife.bind(this, view);
+        dialogTitleTv.setText(titles);
+        if (!isEt) {
+            dialogMessageEt.setVisibility(View.VISIBLE);
+            dialogMessageTv.setVisibility(View.GONE);
+            etContent = dialogMessageEt.getText().toString().trim();
+        } else {
+            dialogMessageTv.setText(messages);
         }
+//        AppUtil.setWindow(getDialog().getWindow());
 
-        public Builder setTitle(String title) {
-            this.title = title;
-            return this;
-        }
+        Window window = getDialog().getWindow();
+        window.setBackgroundDrawableResource(android.R.color.transparent);
+        return view;
+    }
 
-        public Builder setMessage(String message) {
-            this.message = message;
-            return this;
-        }
-
-        public Builder setListener(OnViewListener listener) {
-            mListener = listener;
-            return this;
-        }
-
-        public Builder setCancel(String cancel) {
-            this.cancel = cancel;
-            return this;
-        }
-
-        public Builder setDetermine(String determine) {
-            this.determine = determine;
-            return this;
-        }
-
-        /**
-         * 默认true不显示输入框 false显示
-         *
-         * @param isTvEt
-         * @return
-         */
-        public Builder setIsEt(boolean isTvEt) {
-            this.isTvEt = isTvEt;
-            return this;
-        }
-
-        public MessageDialog create() {
-            messageDialog = new MessageDialog(context);
-            View view = LayoutInflater.from(context).inflate(R.layout.dialog_message, null);
-            //设置标题
-            AppCompatTextView titleView = view.findViewById(R.id.dialog_message_tv);
-            titleView.setText(title);
-            //设置内容
-            AppCompatTextView messageView = view.findViewById(R.id.dialog_title_tv);
-            messageView.setText(message);
-            messageView.setVisibility(message == null ? View.GONE : View.VISIBLE);
-            //设置输入框
-            AppCompatEditText editText = view.findViewById(R.id.dialog_message_et);
-            if (!isTvEt) {
-                messageView.setVisibility(View.GONE);
-                editText.setVisibility(View.VISIBLE);
-                etContext = editText.getText().toString().trim();
-            }
-            //设置左边按钮
-            AppCompatTextView dialogTvMeCancel = view.findViewById(R.id.dialog_tv_me_cancel);
-            dialogTvMeCancel.setOnClickListener(this);
-            dialogTvMeCancel.setText(!TextUtils.isEmpty(cancel) ? cancel : "取消");
-            //设置右边按钮
-            AppCompatTextView dialogTvMeDetermine = view.findViewById(R.id.dialog_tv_me_determine);
-            dialogTvMeDetermine.setOnClickListener(this);
-            dialogTvMeCancel.setText(!TextUtils.isEmpty(determine) ? determine : "确定");
-            messageDialog.setContentView(view);
-            return messageDialog;
-        }
-
-        @Override
-        public void onClick(View view) {
-            switch (view.getId()) {
-                case R.id.dialog_tv_me_cancel:
-                    //取消　
-                    if (mListener != null) {
-                        mListener.onCancel();
-                    }
-                    break;
-                case R.id.dialog_tv_me_determine:
-                    //确定
-                    if (mListener != null) {
-                        mListener.onDetermine(etContext);
-                    }
-                    break;
-                default:
-                    break;
-            }
-            messageDialog.dismiss();
+    @OnClick({R.id.dialog_tv_me_cancel, R.id.dialog_tv_me_determine})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.dialog_tv_me_cancel:
+                messageOnViewListener.onCancel();
+                break;
+            case R.id.dialog_tv_me_determine:
+                messageOnViewListener.onDetermine(!TextUtils.isEmpty(etContent) ? etContent : "");
+                break;
+            default:
+                break;
         }
     }
 
     /**
-     * 按钮监听接口
+     * MessageDialog 按钮监听接口
      */
-    public interface OnViewListener {
+    public interface MessageOnViewListener {
 
         /**
-         * 取消按钮
+         * MessageDialog 取消按钮
          */
         void onCancel();
 
         /**
-         * 确定按钮
+         * MessageDialog 确定按钮
          *
          * @param et 添加理由
          */

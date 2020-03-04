@@ -1,5 +1,7 @@
 package com.example.frameapp.view.activity;
 
+import android.text.TextUtils;
+
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,7 +12,6 @@ import com.example.frameapp.view.dialog.MessageDialog;
 import com.hjq.toast.ToastUtils;
 import com.hyphenate.EMContactListener;
 import com.hyphenate.chat.EMClient;
-import com.hyphenate.exceptions.HyphenateException;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -50,37 +51,37 @@ public class HxAddFriendActivity extends BaseActivity {
             @Override
             public void onContactInvited(String username, String reason) {
                 //收到好友邀请
-                new MessageDialog.Builder(context)
-                        .setMessage(reason)
-                        .setCancel("拒绝")
-                        .setDetermine("接受")
-                        .setListener(new MessageDialog.OnViewListener() {
-                            @Override
-                            public void onCancel() {
-                                try {
-                                    //拒绝好友请求
-                                    EMClient.getInstance().contactManager().declineInvitation(username);
-                                } catch (HyphenateException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-
-                            /**
-                             * 确定按钮
-                             *
-                             * @param et 添加理由
-                             */
-                            @Override
-                            public void onDetermine(String et) {
-                                try {
-                                    //同意好友请求
-                                    EMClient.getInstance().contactManager().acceptInvitation(username);
-                                } catch (HyphenateException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        })
-                        .create().show();
+//                new MessageDialog.Builder(context)
+//                        .setMessage(reason)
+//                        .setCancel("拒绝")
+//                        .setDetermine("接受")
+//                        .setListener(new MessageDialog.OnViewListener() {
+//                            @Override
+//                            public void onCancel() {
+//                                try {
+//                                    //拒绝好友请求
+//                                    EMClient.getInstance().contactManager().declineInvitation(username);
+//                                } catch (HyphenateException e) {
+//                                    e.printStackTrace();
+//                                }
+//                            }
+//
+//                            /**
+//                             * 确定按钮
+//                             *
+//                             * @param et 添加理由
+//                             */
+//                            @Override
+//                            public void onDetermine(String et) {
+//                                try {
+//                                    //同意好友请求
+//                                    EMClient.getInstance().contactManager().acceptInvitation(username);
+//                                } catch (HyphenateException e) {
+//                                    e.printStackTrace();
+//                                }
+//                            }
+//                        })
+//                        .create().show();
             }
 
             @Override
@@ -107,57 +108,27 @@ public class HxAddFriendActivity extends BaseActivity {
 
     @OnClick(R.id.bu_search_hx_add_friend)
     public void onViewClicked() {
-//        String userName = etHxAddFriend.getText().toString().trim();
-//        if (TextUtils.isEmpty(userName)) {
-//            ToastUtils.show("搜索框不能为空");
-//        }
-//        new MessageDialog.Builder(context)
-////                .setIsEt(false)
-//                .setListener(new MessageDialog.OnViewListener() {
-//                    @Override
-//                    public void onCancel() {
-//                    }
-//
-//                    /**
-//                     * 确定按钮
-//                     *
-//                     * @param et 添加理由
-//                     */
-//                    @Override
-//                    public void onDetermine(String et) {
-//                        //（SDK 不提供好友查找的服务，如需要查找好友，需要调用开发者自己服务器的用户查询接口）
-//                        etHxAddFriend.post(() -> {
-//                            //自己验证好友名称是否正确
-//                            try {
-//                                //参数为要添加的好友的username和添加理由
-//                                EMClient.getInstance().contactManager().addContact(userName, et);
-//                            } catch (HyphenateException e) {
-//                                e.printStackTrace();
-//                            }
-//                        });
-//                    }
-//                })
-//                .create().show();
+        String userName = etHxAddFriend.getText().toString().trim();
+        if (TextUtils.isEmpty(userName)) {
+            ToastUtils.show("搜索框不能为空");
+        } else {
+            MessageDialog messageDialog = MessageDialog.newInstance();
+            messageDialog.setTitles("添加好友").setEt(false)
+                    .setMessageOnViewListener(new MessageDialog.MessageOnViewListener() {
+                        @Override
+                        public void onCancel() {
+                            //取消添加
+                            messageDialog.getDialog().dismiss();
+                        }
 
-        new MessageDialog.Builder(context)
-                .setTitle("标题")
-                .setMessage("这是内容")
-                .setListener(new MessageDialog.OnViewListener() {
-                    @Override
-                    public void onCancel() {
-                        ToastUtils.show("取消");
-                    }
-
-                    /**
-                     * 确定按钮
-                     *
-                     * @param et 添加理由
-                     */
-                    @Override
-                    public void onDetermine(String et) {
-                        ToastUtils.show("确定");
-                    }
-                })
-                .create().show();
+                        @Override
+                        public void onDetermine(String et) {
+                            //确定添加
+                            messageDialog.getDialog().dismiss();
+                            ToastUtils.show(et);
+                        }
+                    });
+            messageDialog.show(getSupportFragmentManager(), "MessageDialog");
+        }
     }
 }

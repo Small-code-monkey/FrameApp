@@ -2,7 +2,7 @@ package com.example.frameapp.mvp.model;
 
 import android.util.Log;
 
-import com.example.frameapp.bean.MvpTestDataBean;
+import com.example.frameapp.bean.BingMvpDataBean;
 import com.example.frameapp.inter.OnRetrofits;
 import com.example.frameapp.mvp.contract.MvpContract;
 import com.example.frameapp.protocol.BaseProtocol;
@@ -44,10 +44,10 @@ public class MvpModel implements MvpContract.Model {
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
         BaseProtocol baseProtocol = retrofit.create(BaseProtocol.class);
-        Call<MvpTestDataBean> call = baseProtocol.getWallPaperData(pageSize, pageNum);
-        call.enqueue(new Callback<MvpTestDataBean>() {
+        Call<BingMvpDataBean> call = baseProtocol.getWallPaperData(pageSize, pageNum);
+        call.enqueue(new Callback<BingMvpDataBean>() {
             @Override
-            public void onResponse(Call<MvpTestDataBean> call, Response<MvpTestDataBean> response) {
+            public void onResponse(Call<BingMvpDataBean> call, Response<BingMvpDataBean> response) {
                 Log.d("TAG", "----->" + "请求：" + response.raw());
                 if (null != response.body()) {
                     Log.d("TAG", "----->" + "数据：" + response.body());
@@ -59,7 +59,7 @@ public class MvpModel implements MvpContract.Model {
             }
 
             @Override
-            public void onFailure(Call<MvpTestDataBean> call, Throwable t) {
+            public void onFailure(Call<BingMvpDataBean> call, Throwable t) {
                 Log.d("TAG", "----->" + t);
                 onRetrofits.onFailure();
             }

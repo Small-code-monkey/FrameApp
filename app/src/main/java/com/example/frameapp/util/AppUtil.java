@@ -2,8 +2,6 @@ package com.example.frameapp.util;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkCapabilities;
 import android.net.NetworkInfo;
@@ -14,6 +12,8 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
+
+import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 /**
  * 工具类
@@ -62,7 +62,22 @@ public class AppUtil {
             window.setAttributes(params);
             window.setWindowAnimations(android.R.style.Animation_Toast);
             window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-            window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            window.setBackgroundDrawableResource(android.R.color.transparent);
         }
+    }
+
+    /**
+     * 设置BottomNavigationViewEx只显示文字
+     *
+     * @param viewEx
+     * @return
+     */
+    public static BottomNavigationViewEx setNoIcon(BottomNavigationViewEx viewEx) {
+        viewEx.setIconVisibility(false);
+        viewEx.setTextSize(14);
+        viewEx.enableAnimation(false);
+        viewEx.enableShiftingMode(false);
+        viewEx.enableItemShiftingMode(false);
+        return viewEx;
     }
 }

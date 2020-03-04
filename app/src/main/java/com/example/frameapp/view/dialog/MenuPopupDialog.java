@@ -62,6 +62,16 @@ public class MenuPopupDialog extends DialogFragment {
         return view;
     }
 
+    public interface MenuOnListener {
+
+        /**
+         * 监听点击事件
+         *
+         * @param position
+         */
+        void mOnClickOnListener(int position);
+    }
+
     private static class MenuPopupAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
         /**
          * Same as QuickAdapter#QuickAdapter(Context,int) but with
@@ -83,17 +93,7 @@ public class MenuPopupDialog extends DialogFragment {
         @Override
         protected void convert(BaseViewHolder helper, String item) {
             helper.setText(R.id.item_tv_dialog_popup, item)
-            .addOnClickListener(R.id.item_tv_dialog_popup);
+                    .addOnClickListener(R.id.item_tv_dialog_popup);
         }
-    }
-
-    public interface MenuOnListener {
-
-        /**
-         * 监听点击事件
-         *
-         * @param position
-         */
-        void mOnClickOnListener(int position);
     }
 }

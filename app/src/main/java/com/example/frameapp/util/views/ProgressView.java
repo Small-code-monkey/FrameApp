@@ -29,7 +29,12 @@ public final class ProgressView extends View {
     private final static int BAR_LENGTH = 16;
     private final static int BAR_MAX_LENGTH = 270;
     private final static long PAUSE_GROWING_TIME = 200;
-
+    /**
+     * Paints
+     */
+    private final Paint mBarPaint = new Paint();
+    private final Paint mRimPaint = new Paint();
+    private final boolean mShouldAnimate;
     /**
      * Sizes (with defaults in DP)
      */
@@ -47,37 +52,24 @@ public final class ProgressView extends View {
      */
     private int mBarColor = 0xAA000000;
     private int mRimColor = 0x00FFFFFF;
-
-    /**
-     * Paints
-     */
-    private final Paint mBarPaint = new Paint();
-    private final Paint mRimPaint = new Paint();
-
     /**
      * Rectangles
      */
     private RectF mCircleBounds = new RectF();
-
+    /** private float mSpinSpeed = 120.0f; */
     /**
      * Animation The amount of degrees per second
      */
     private float mSpinSpeed = 230.0f;
-    /** private float mSpinSpeed = 120.0f; */
     /**
      * The last time the spinner was animated
      */
     private long mLastTimeAnimated = 0;
-
     private boolean mLinearProgress;
-
     private float mProgress = 0.0f;
     private float mTargetProgress = 0.0f;
     private boolean isSpinning = false;
-
     private ProgressCallback mCallback;
-
-    private final boolean mShouldAnimate;
 
     public ProgressView(Context context) {
         this(context, null, 0);

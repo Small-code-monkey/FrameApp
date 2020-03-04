@@ -1,6 +1,6 @@
 package com.example.frameapp.protocol;
 
-import com.example.frameapp.bean.MvpTestDataBean;
+import com.example.frameapp.bean.BingMvpDataBean;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -24,6 +24,6 @@ public interface BaseProtocol {
      * @return
      */
     @GET("all?")
-    Call<MvpTestDataBean> getWallPaperData(@Query("pageSize") int pageSize,
+    Call<BingMvpDataBean> getWallPaperData(@Query("pageSize") int pageSize,
                                            @Query("pageNum") int pageNum);
 }

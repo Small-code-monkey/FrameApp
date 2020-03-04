@@ -4,11 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.activity.ChartActivity">
+    tools:context=".view.fragment.HomeSubClassFragment">
 
-    <com.hjq.bar.TitleBar
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_home_subclass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:title="开源图表"
+        android:overScrollMode="never"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:ignore="MissingConstraints" />
 </androidx.constraintlayout.widget.ConstraintLayout>
